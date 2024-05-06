@@ -1,0 +1,86 @@
+/* Carousel.css */
+.Carousel {
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 80vh;
+    background-color: aquamarine;
+    z-index: 1;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  .imgdiv {
+    width: 100vw; 
+    height: 80vh;
+    background-color: rgb(0, 0, 0);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0%;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden; 
+}
+  .buttonsContainer {
+    position: absolute;
+    bottom: 35%; 
+    width: 100%;
+    display: flex;
+    margin-left: 5%;
+    font-weight: bold;
+}
+.playButton{
+  background-color: white;
+}
+.infoButton{
+  background-color: rgba(255, 255, 255, 0.5); 
+}
+.playButton,
+.infoButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+   
+    margin: 0 10px; 
+}
+
+.playButton:hover,
+.infoButton:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.playButton img,
+.infoButton img {
+    width: 20px; 
+    height: 20px;
+    margin-right: 5px;
+}
+.slideIndicators {
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.indicator {
+  width: 20px; 
+  height: 5px; 
+  background-color: gray;
+  border-radius: 2px; 
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.indicator.active {
+  background-color: black;
+}
