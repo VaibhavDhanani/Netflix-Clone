@@ -1,0 +1,75 @@
+/* Carousel.css */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh; 
+}
+
+.slide-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.content {
+  position: absolute;
+  width: auto;
+  max-width: 40%;
+  text-overflow: clip;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  background-color: transparent;
+  padding: 20px;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.playButton img,
+.infoButton img {
+    width: 20px; 
+    height: 20px;
+    margin-right: 5px;
+}
+
+.playButton :hover,
+.infoButton :hover {
+    background-color: darkgray;
+}
