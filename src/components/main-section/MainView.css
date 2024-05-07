@@ -40,6 +40,8 @@
   color: white;
   background-color: transparent;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .prev,

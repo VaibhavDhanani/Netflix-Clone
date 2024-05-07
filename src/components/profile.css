@@ -1,0 +1,153 @@
+.Profile{
+    background-color: #f8f8f8;
+}
+.profile-main {
+   
+    height: 100vh; 
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    background-color: #f8f8f8;
+ 
+  }
+  
+  .sidebar {
+    width: 30%;
+    padding: 20px;
+    background-color: #f8f8f8;
+    display: flex;
+    margin-top: 50px;
+    flex-direction: column;
+   
+}
+  .sidebarop {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: 57%;
+    padding: 6px;
+    font-size: 19px; 
+    font-weight: bold; 
+   background-color: #f8f8f8;
+
+  
+   
+  }
+  
+  .sidebarop button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .sidebarop  span {
+    padding-left: 10px;
+  }
+  
+  .backbutton{
+    margin-left: 0;
+    margin-bottom: 50px;
+    font-weight: 600;
+    background-color: #f8f8f8;
+    font-size: medium;
+
+  }
+  
+  .options {
+    
+    list-style: none;
+    padding: 0;
+
+    margin-top: 50px;
+    width:70%   
+  }
+  
+  .options li {
+    margin-bottom: 10px;
+  }
+  
+  .content {
+    padding: 20px;
+    flex: 1; 
+    display: flex;
+   
+    
+    text-align: center;
+  }
+  .title{
+    font-size: xx-large;
+    font-weight: 700;
+    text-align: left;
+  }
+  .plan{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: fit-content;
+    background-color: white;
+    border-radius: 10.5px;
+    
+    text-align: left;
+  }
+ h1,h2{
+    margin-top:3px;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 600;
+    margin-left: 20px;
+ }
+ h3{
+    font-weight: 400;
+    margin-left: 20px;
+ }
+ .manage{
+    margin-left: 20px;
+    margin-top:10px;
+    margin-bottom:10px;
+    float: left;
+ }
+ .ql {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+}
+
+.ql h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.ql ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ql li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    text-align: left;
+    font-weight: 500;
+}
+li  span{
+    padding-left: 10px;
+}
+
+/* Style for the horizontal separator */
+.ql li:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+/* Alternate style for even li elements */
+.ql li:nth-child(even) {
+    background-color: #f1f1f1;
+}

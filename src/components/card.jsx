@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./card.css";
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';

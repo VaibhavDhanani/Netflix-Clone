@@ -3,9 +3,10 @@
   display: flex;
   flex-wrap: nowrap; 
   overflow-x: auto;
-  margin-top: 20px; 
+  padding-top: 20px; 
   height: 500px;
-  margin-left: 50px;
+  padding-left: 50px;
+  background-color:#181818; 
 }
 
 .imageContainer {
