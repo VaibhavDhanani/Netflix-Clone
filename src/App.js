@@ -1,22 +1,17 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainView from './components/main-section/MainView';
-import Header from "./components/header/Header";
-
-import Profile from './components/profile'; 
+import Profile from "./components/profile/profile";
+import HomePage from "./pages/home-page";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        
+      <div className="App bg-black">
         <Routes>
-          <Route path="/" element={
-          <MainView />} /> 
-          <Route path="/profile" element={<Profile />} /> 
+          <Route path="/" element={<HomePage />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
-       
       </div>
     </BrowserRouter>
   );
