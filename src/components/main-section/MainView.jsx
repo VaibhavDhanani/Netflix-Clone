@@ -4,6 +4,9 @@ import InfoIcon from '@mui/icons-material/Info';
 import './MainView.css';
 import Card from "../sub-section/card/card";
 import Header from '../header/Header';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 const MainView = () => {
   const slides = [
     {
@@ -53,9 +56,12 @@ const MainView = () => {
             style={{ backgroundImage: `url(${slide.imageSrc})` }}
           >
             <div className="content">
-              <div> <h2 className='text-2xl font-extrabold font-sans'>{slide.title}</h2>
-                <p>{slide.description}</p></div>
-              <div className='flex justify-center items-center'>
+              <div> <h2 className='carousel-title'>{slide.title}</h2>
+                <p className='carousel-description'>{slide.description}</p></div>
+              
+
+            </div>
+            <div className='play-button-container'>
 
                 <button
                   className="playButton mx-1 bg-white text-black rounded py-2 px-4 font-bold hover:bg-blue-gray-400 focus:outline-none"
@@ -79,16 +85,14 @@ const MainView = () => {
                 </button>
 
               </div>
-
-            </div>
           </div>
         ))}
       </div>
       <button className="prev" onClick={prevSlide}>
-        Prev
+        <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
       </button>
       <button className="next" onClick={nextSlide}>
-        Next
+        <ArrowForwardIosIcon></ArrowForwardIosIcon>
       </button>
     </div>
   );

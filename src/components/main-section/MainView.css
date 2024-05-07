@@ -11,7 +11,18 @@
   width: 100%;
   height: 100%;
 }
+.carousel-title{
+  font-family: "Fredericka the Great", serif;
+  font-style: normal;
+  font-size: 8vh;
+}
 
+.carousel-description{
+  font-family: "Laila", serif;
+  font-weight: 300;
+  font-style: normal;
+ 
+}
 .slide {
   position: absolute;
   top: 0;
@@ -44,6 +55,12 @@
   flex-direction: column;
 }
 
+.play-button-container{
+  position: absolute;
+  bottom:25%;
+  left:12%;
+  height: fit-content;
+}
 .prev,
 .next {
   position: absolute;
