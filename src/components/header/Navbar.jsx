@@ -54,7 +54,7 @@ const Navbar = () => {
 										{isOpen ? (
 											<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
 										) : (
-											<path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
+											<path strokeLinecap="round" st	rokeLinejoin="round" d="M4 8h16M4 16h16" />
 										)}
 									</svg>
 								</button>
@@ -72,9 +72,9 @@ const Navbar = () => {
 						</div>
 
 						<button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-							<div className="w-8 h-8 overflow-hidden border-2 border-gray-100 rounded-full">
+							<a href='/profile'><div className="w-8 h-8 overflow-hidden border-2 border-gray-100 rounded-full">
 								<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" className="object-cover w-full h-full" alt="avatar" />
-							</div>
+							</div></a>
 							<h3 className="mx-2 text-gray-100 lg:hidden">User Name</h3>
 						</button>
 					</div>

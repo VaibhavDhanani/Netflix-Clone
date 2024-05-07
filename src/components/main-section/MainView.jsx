@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import './MainView.css';
-
+import Card from "../card";
+import Header from '../header/Header';
 const MainView = () => {
   const slides = [
     {
@@ -43,6 +44,8 @@ const MainView = () => {
   }, [nextSlide]);
 
   return (
+    <><Header />
+    <></>
     <div className="carousel">
       <div className="slide-container">
         {slides.map((slide, index) => (
@@ -52,8 +55,8 @@ const MainView = () => {
             style={{ backgroundImage: `url(${slide.imageSrc})` }}
           >
             <div className="content">
-              <h2 className='text-2xl font-extrabold font-sans' >{slide.title}</h2>
-              <p>{slide.description}</p>
+             <div> <h2 className='text-2xl font-extrabold font-sans'>{slide.title}</h2>
+              <p>{slide.description}</p></div>
               <div className='flex justify-center items-center'>
 
                 <button
@@ -84,12 +87,12 @@ const MainView = () => {
         ))}
       </div>
       <button className="prev" onClick={prevSlide}>
-        Prve
+        Prev
       </button>
       <button className="next" onClick={nextSlide}>
         Next
       </button>
-    </div>
+    </div><Card /></>
   );
 };
 

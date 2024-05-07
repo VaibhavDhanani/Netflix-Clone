@@ -1,17 +1,24 @@
-// App.js
 import React from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainView from './components/main-section/MainView';
 import Header from "./components/header/Header";
-import Card from "./components/card";
+
+import Profile from './components/profile'; 
+
 function App() {
-  
   return (
-    <div className="App">
-      <Header />
-      <MainView />
-      <Card/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        
+        <Routes>
+          <Route path="/" element={
+          <MainView />} /> 
+          <Route path="/profile" element={<Profile />} /> 
+        </Routes>
+       
+      </div>
+    </BrowserRouter>
   );
 }
 
