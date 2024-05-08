@@ -9,8 +9,7 @@ function Card(props) {
  
     const [isHovered, setIsHovered] = useState(false);
 
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
+   
     const { id, name, imageUrl, ratings, totalLikes, totalSeasons } = props.info;
   return (
     
@@ -18,7 +17,7 @@ function Card(props) {
         <div
         
           className="imageContainer"
-          onMouseEnter={() => setIsHovered(true)}
+          onMouseEnter={() => { setIsHovered(true)}}
           onMouseLeave={() => setIsHovered(false)}
         >
           <img
@@ -44,10 +43,10 @@ function Card(props) {
                     <button class="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button>
                     <button class="circular-buttonl"><KeyboardArrowDownIcon></KeyboardArrowDownIcon></button>
                   </div>
-                  <div className="season text-xs">{totalSeasons} seasons</div>
-              <div className="hashtags text-xs">
-                <p>{name}</p>
-                <p>{totalLikes}</p>
+                  <p className="moviename">{name}</p>  <div className="season">{totalSeasons} seasons</div>
+              <div className="hashtags">
+                
+                <p >Likes : {totalLikes}</p>
                 <p>{ratings} / 5.0</p>
                 </div>
             </div>

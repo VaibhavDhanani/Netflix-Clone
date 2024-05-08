@@ -1,0 +1,10 @@
+.category-name{
+    color: white;
+   margin-left: 4.5%;
+   margin-top: 1%;
+   font-weight: bold;
+}
+.card-container{
+    display: flex;
+    margin-left: 4%;
+    }

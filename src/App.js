@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Profile from "./components/profile/profile";
 import HomePage from "./pages/home-page";
+import Categorypage from "./pages/category-page";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/profile" element={<Profile />} />
-          
+          <Route path="/category/:title" element={<Categorypage />} />
         </Routes>
       </div>
     </BrowserRouter>
