@@ -1,0 +1,28 @@
+.videoplayer{
+ height:90%  ;
+ width:90%;
+ border-radius: 10px;
+ margin-bottom: 50px;
+ margin-top: 40px;
+ box-shadow: rgba(255, 255, 255, 0.25) 0px 4px 8px -2px, rgba(255, 255, 255, 0.08) 0px 0px 0px 1px;
+}
+.media-player-title{
+  color: white ;
+  justify-content: center;
+  margin-top: 20px;
+}
+.media-player-title h1{
+  font-family: "Fredericka the Great", serif;
+  font-size: xx-large;
+
+}
+.back-button-media{
+  margin-right: 25%;
+  float: left;
+  margin-top: 20px;
+  margin-left:20px ;
+  cursor: pointer;
+}
+.media-player-container{
+  height: 100vh;
+}

@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 const Header = () => {
     return (
-        <div>
+        <div className='m-0'  >
             <Navbar />
         </div>
     )

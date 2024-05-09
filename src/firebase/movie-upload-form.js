@@ -89,7 +89,7 @@ const MovieForm = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center w-full dark:bg-gray-950 "
+      className="min-h-screen flex items-center justify-center w-full  dark:bg-gray-950 "
       style={{
         backgroundImage: `url("https://imgs.search.brave.com/RglXnhdOA-ts7fY4xgsCUP0K_C1KQk5nUcVqTbvRdIE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9h/cnJhbmdlbWVudC1j/aW5lbWEtZWxlbWVu/dHMtYmxhY2stYmFj/a2dyb3VuZC13aXRo/LWNvcHktc3BhY2Vf/MjMtMjE0ODQ1Nzg0/Mi5qcGc_c2l6ZT02/MjYmZXh0PWpwZw")`,
         backgroundSize: "cover",
@@ -103,7 +103,7 @@ const MovieForm = () => {
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="title" className="block mb-2 text-white">
+            <label htmlFor="title" className="block mb-2 text-dark">
               Movie Title:
             </label>
             <input
@@ -118,7 +118,7 @@ const MovieForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="releaseDate" className="block mb-2 text-white">
+            <label htmlFor="releaseDate" className="block mb-2 text-dark">
               Release Date:
             </label>
             <input
@@ -132,7 +132,7 @@ const MovieForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-white">Image:</label>
+            <label className="block mb-2 text-dark">Image:</label>
             <div className="flex items-center mb-2">
               <input
                 type="file"
@@ -154,7 +154,7 @@ const MovieForm = () => {
             /> */}
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-white">Video:</label>
+            <label className="block mb-2 text-dark">Video:</label>
             <div className="flex items-center mb-2">
               <input
                 type="file"
@@ -176,7 +176,7 @@ const MovieForm = () => {
             /> */}
           </div>
           <div className="mb-4">
-            <label htmlFor="description" className=" block mb-2 text-white">
+            <label htmlFor="description" className=" block mb-2 text-dark">
               Description:
             </label>
             <textarea
@@ -188,11 +188,11 @@ const MovieForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="categories" className="block mb-2 text-white">
+            <label htmlFor="categories" className="block mb-2 text-dark">
               Category:
             </label>
             <div className="flex flex-wrap">
-              <label className="inline-flex items-center text-white mr-4 mb-2">
+              <label className="inline-flex items-center text-dark mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -202,7 +202,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Action</span>
               </label>
-              <label className="inline-flex items-center text-white mr-4 mb-2">
+              <label className="inline-flex items-center text-dark mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -212,7 +212,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Comedy</span>
               </label>
-              <label className="inline-flex items-center text-white mr-4 mb-2">
+              <label className="inline-flex items-center text-dark mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -222,7 +222,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Drama</span>
               </label>
-              <label className="inline-flex items-center text-white mr-4 mb-2">
+              <label className="inline-flex items-center text-dark mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -232,7 +232,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Thriller</span>
               </label>
-              <label className="inline-flex items-center text-white mr-4 mb-2">
+              <label className="inline-flex items-center text-dark mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -242,7 +242,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Horror</span>
               </label>
-              <label className="inline-flex items-center text-white mr-4 mb-2">
+              <label className="inline-flex items-center text-dark mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -252,7 +252,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Romance</span>
               </label>
-              <label className="inline-flex items-center text-white mr-4 mb-2">
+              <label className="inline-flex items-center text-dark mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -262,7 +262,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Sci-Fi</span>
               </label>
-              <label className="inline-flex items-center text-white mr-4 mb-2">
+              <label className="inline-flex items-center text-dark mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"

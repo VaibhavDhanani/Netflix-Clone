@@ -13,8 +13,8 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="fixed top-0 w-full bg-transparent z-10">
-			<div className="container px-6 py-3 mx-auto">
+		<nav className="fixed top-0 w-full m-0 bg-transparent z-10">
+			<div className=" px-6 py-3 m-0">
 				<div className="lg:flex lg:items-center lg:justify-between">
 					<div className="flex items-center justify-between">
 						<div className={`lg:flex lg:items-center justify-between mx-4 ${isOpen ? 'block bg-black bg-opacity-50 w-96' : 'hidden'}`}>

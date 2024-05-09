@@ -3,13 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
 import { ThemeProvider } from "@material-tailwind/react";
 import firebase from "firebase/compat/app"
 import { firebaseConfig } from "./firebase/firebase.config";
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
