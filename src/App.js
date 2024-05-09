@@ -5,13 +5,17 @@ import Profile from "./components/profile/profile";
 import HomePage from "./pages/home-page";
 import Categorypage from "./pages/category-page";
 
+import Player from "./components/video-player/video-player";
 function App() {
   return (
+     
     <BrowserRouter>
       <div className="App bg-black">
         <Routes>
           <Route path="/" element={<HomePage />} />
+         
           <Route path="/profile" element={<Profile />} />
+          <Route path="/player" element={<Player />} />
           <Route path="/category/:title" element={<Categorypage />} />
         </Routes>
       </div>
