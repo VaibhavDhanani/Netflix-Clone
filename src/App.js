@@ -6,6 +6,7 @@ import HomePage from "./pages/home-page";
 import Categorypage from "./pages/category-page";
 import SignUp from "./components/SignUp/sign-up";
 import SignIn from "./components/SignIn/sign-in";
+import MovieForm from "./firebase/movie-upload-form";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/movie" element={<MovieForm />} />
           <Route path="/category/:title" element={<Categorypage />} />
         </Routes>
       </div>
