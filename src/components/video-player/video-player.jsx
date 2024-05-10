@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Plyr from 'plyr';
-import './ab.css'; // assuming you have a CSS file for styling
+import './ab.css';
 
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 function VideoPlayer() {
