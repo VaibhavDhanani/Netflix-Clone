@@ -1,6 +1,7 @@
 {
   "name": "flixify",
   "version": "0.1.0",
+  "proxy" : "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -12,11 +13,11 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "dotenv": "^16.4.5",
-    "firebase": "^10.11.1",
     "@vidstack/player": "^1.6.5",
     "@vidstack/player-react": "^1.6.5",
-
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase": "^10.11.1",
     "lit": "^2.8.0",
     "plyr": "^3.7.8",
     "plyr-react": "^5.3.0",

@@ -7,6 +7,7 @@ import Categorypage from "./pages/category-page";
 import SignUp from "./components/SignUp/sign-up";
 import SignIn from "./components/SignIn/sign-in";
 import MovieForm from "./firebase/movie-upload-form";
+import Abc from "./checking-backend/abc";
 import VideoPlayer from "./components/video-player/video-player";
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
-         
+         < Route path="/node" element={< Abc/>} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
