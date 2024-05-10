@@ -73,8 +73,31 @@ const MovieForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+
     console.log(formData);
+    const postData = {
+      title: formData.title,
+      releaseDate: formData.releaseDate,
+      imageUrl: formData.imageUrl,
+      videoUrl: formData.videoUrl,
+      description: formData.description,
+      categories: formData.categories,
+    };
+  
+    // Make a POST request to your server
+    fetch('http://localhost:5000/movies', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
     setFormData({
       title: "",
       releaseDate: "",
