@@ -84,7 +84,6 @@ const MovieForm = () => {
       categories: formData.categories,
     };
   
-    // Make a POST request to your server
     fetch('http://localhost:5000/movies', {
       method: 'POST',
       headers: {
