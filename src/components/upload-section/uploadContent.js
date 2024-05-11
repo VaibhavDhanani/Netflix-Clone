@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
+import MovieUpload from "./movie-upload";
+import SeasonUpload from "./series-upload";
+// import MovieUpload from "./movie-upload";
+// import SeasonUpload from "./season-upload";
 
 const MovieForm = () => {
   const [formData, setFormData] = useState({
-    title: "",
-    releaseDate: "",
-    imageUrl: "",
+    title: null,
+    name: null,
+    releaseDate: null,
+    imageUrl: null,
     image: null,
-    video: null,
-    videoUrl: "",
-    description: "",
+    description: null,
     categories: [],
+    totalLikes: 0,
+    ratings: 0,
+    type: "movie",
+    videoUrl: null,
+    video: null,
+    
   });
 
   const handleChange = (e) => {
@@ -29,29 +38,10 @@ const MovieForm = () => {
       const fileRef = storageRef.child(selectedFile.name);
       fileRef.put(selectedFile).then((snapshot) => {
         snapshot.ref.getDownloadURL().then((downloadUrl) => {
-          console.log(downloadUrl);
           setFormData({
             ...formData,
             imageUrl: downloadUrl,
-            image: e.target.files[0],
-          });
-        });
-      });
-    }
-  };
-
-  const handleVideoChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      const storageRef = firebase.storage().ref("/videos/");
-      const fileRef = storageRef.child(selectedFile.name);
-      fileRef.put(selectedFile).then((snapshot) => {
-        snapshot.ref.getDownloadURL().then((downloadUrl) => {
-          console.log(downloadUrl);
-          setFormData({
-            ...formData,
-            videoUrl: downloadUrl,
-            video: e.target.files[0],
+            image: selectedFile,
           });
         });
       });
@@ -59,13 +49,10 @@ const MovieForm = () => {
   };
 
   const handleCategoryChange = (e) => {
-    const { value } = e.target;
-    const updatedCategories = [...formData.categories];
-    if (updatedCategories.includes(value)) {
-      updatedCategories.splice(updatedCategories.indexOf(value), 1);
-    } else {
-      updatedCategories.push(value);
-    }
+    const { value, checked } = e.target;
+    const updatedCategories = checked
+      ? [...formData.categories, value]
+      : formData.categories.filter((category) => category !== value);
     setFormData({
       ...formData,
       categories: updatedCategories,
@@ -73,69 +60,67 @@ const MovieForm = () => {
   };
 
   const handleSubmit = (e) => {
-
+    e.preventDefault();
     console.log(formData);
-    const postData = {
-      title: formData.title,
-      releaseDate: formData.releaseDate,
-      imageUrl: formData.imageUrl,
-      videoUrl: formData.videoUrl,
-      description: formData.description,
-      categories: formData.categories,
-    };
-  
-    fetch('http://localhost:5000/movies', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    setFormData({
-      title: "",
-      releaseDate: "",
-      imageUrl: "",
-      image: null,
-      video: null,
-      videoUrl: "",
-      description: "",
-      categories: [],
-    });
+    // Add your submit logic here
   };
+
+  const movieTitles = [
+    "Anime",
+    "K-Dramas",
+    "IndianTV",
+    "Hollywood",
+    "Biography",
+    "Sports",
+    "FamiliyTV",
+    "Kid'sTV",
+  ];
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center w-full  dark:bg-gray-950 "
+      className="min-h-screen flex items-center justify-center w-full  dark:bg-gray-950 text-white"
       style={{
         backgroundImage: `url("https://imgs.search.brave.com/RglXnhdOA-ts7fY4xgsCUP0K_C1KQk5nUcVqTbvRdIE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9h/cnJhbmdlbWVudC1j/aW5lbWEtZWxlbWVu/dHMtYmxhY2stYmFj/a2dyb3VuZC13aXRo/LWNvcHktc3BhY2Vf/MjMtMjE0ODQ1Nzg0/Mi5qcGc_c2l6ZT02/MjYmZXh0PWpwZw")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        
       }}
     >
-      <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
+      <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6">
         <h1 className="text-3xl font-bold text-center mb-4 text-red-600 uppercase">
-          Add New Movie
+          Add New Content
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="title" className="block mb-2 text-dark">
               Movie Title:
             </label>
-            <input
-              type="text"
+            <select
               id="title"
               name="title"
-              placeholder="title"
               value={formData.title}
               onChange={handleChange}
-              className="block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 px-2 py-1"
+              className="block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 text-black px-2 py-1"
+              required
+            >
+              <option value="">Select Movie Title</option>
+              {movieTitles.map((title) => (
+                <option key={title} value={title}>
+                  {title}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="name" className="block mb-2 text-dark">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="text-black px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
               required
             />
           </div>
@@ -149,12 +134,12 @@ const MovieForm = () => {
               name="releaseDate"
               value={formData.releaseDate}
               onChange={handleChange}
-              className=" px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+              className="text-black px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-dark">Image:</label>
+            <label className="mb-2 text-dark">Image:</label>
             <div className="flex items-center mb-2">
               <input
                 type="file"
@@ -163,40 +148,19 @@ const MovieForm = () => {
                 onChange={handleImageChange}
                 className="mr-2 px-2"
               />
-              {/* <span className="text-sm text-white">or</span> */}
             </div>
-            {/* <input
+              <span className="text-sm text-white">or</span>
+            <input
               type="url"
               id="imageUrl"
               name="imageUrl"
               value={formData.imageUrl}
               onChange={handleChange}
               placeholder="Enter Image URL"
-              className="block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-            /> */}
+              className="block text-black w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+            />
           </div>
-          <div className="mb-4">
-            <label className="block mb-2 text-dark">Video:</label>
-            <div className="flex items-center mb-2">
-              <input
-                type="file"
-                id="video"
-                name="video"
-                onChange={handleVideoChange}
-                className="mr-2 px-2"
-              />
-              {/* <span className="text-sm text-white">or</span> */}
-            </div>
-            {/* <input
-              type="url"
-              id="videoUrl"
-              name="videoUrl"
-              value={formData.videoUrl}
-              onChange={handleChange}
-              placeholder="Enter Video URL"
-              className="block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-            /> */}
-          </div>
+
           <div className="mb-4">
             <label htmlFor="description" className=" block mb-2 text-dark">
               Description:
@@ -206,7 +170,7 @@ const MovieForm = () => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="block px-2 w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+              className="text-black block px-2 w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
           <div className="mb-4">
@@ -294,15 +258,29 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">18+</span>
               </label>
-              {/* Add more checkboxes as needed */}
+              
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-red-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 hover:bg-red-600"
-          >
-            Submit
-          </button>
+
+          <div className="mb-4">
+            <label htmlFor="type" className="block mb-2 text-dark">
+              Content Type:
+            </label>
+            <select
+              id="type"
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              className="block w-full text-black rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 px-2 py-1"
+              required
+            >
+              <option value="movie">Movie</option>
+              <option value="series">Series</option>
+            </select>
+          </div>
+
+          {formData.type === "movie" ? <MovieUpload formData={formData} /> : <SeasonUpload formData={formData} />}
+          
         </form>
       </div>
     </div>
