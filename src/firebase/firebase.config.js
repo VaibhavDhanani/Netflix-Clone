@@ -6,7 +6,11 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+<<<<<<< HEAD
 export const firebaseConfig = {
+=======
+const firebaseConfig = {
+>>>>>>> d2ccd83 (firebase added)
   apiKey: "AIzaSyBWv1-yTPun2cnfjvtY84KAE73vao6S1w0",
   authDomain: "flixify-2a99b.firebaseapp.com",
   projectId: "flixify-2a99b",
