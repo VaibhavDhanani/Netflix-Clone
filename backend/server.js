@@ -71,6 +71,7 @@ app.get("/getdata", (req, res) => {
 });
 
 app.post("/user", (req, res) => {
+
   const userData = req.body;
   console.log("Received user data:", userData);
   const newUser = new UserModel();
@@ -81,17 +82,19 @@ app.post("/user", (req, res) => {
     newUser.plan = userData.plan;
     newUser.address = userData.address;
     newUser.password = userData.password;
-  newUser
-    .save()
-    .then(function () {
-      console.log("User data saved successfully:", newUser);
-      res.status(200).json({ message: "User data saved successfully." });
-    })
-    .catch(function (err) {
-      console.error("Error saving user data:", err);
-      res.status(500).json({ error: "Failed to save user data." });
-    });
-});
+
+  
+    newUser.save()
+      .then(function () {
+        console.log("User data saved successfully:", newUser);
+        res.status(200).json({ message: "User data saved successfully." });
+      })
+      .catch(function (err) {
+        console.error("Error saving user data:", err);
+        res.status(500).json({ error: "Failed to save user data." });
+      });
+  });
+
 
 app.post("/maincontentupload", (req, res) => {
   const movieData = req.body;
