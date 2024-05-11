@@ -43,24 +43,27 @@ app.get('/getdata', (req, res) =>{
 app.post("/user", (req, res) => {
     const userData = req.body;
     console.log("Received user data:", userData);
+  
     const newUser = new UserModel();
     newUser.name = userData.displayName;
     newUser.email = userData.email;
-    newUser.phone = "45454545";
-    newUser.city = "surat";
-    newUser.plan = "pro";
-    newUser.address = "surat-gujrat";
-    newUser.password =  userData.password;
+    newUser.phone = userData.mobile;
+    newUser.city = userData.city;
+    newUser.plan = userData.plan;
+    newUser.address = userData.address;
+    newUser.password = userData.password;
+  
     newUser.save()
-    .then(function () {
+      .then(function () {
         console.log("User data saved successfully:", newUser);
         res.status(200).json({ message: "User data saved successfully." });
-    })
-    .catch(function (err) {
+      })
+      .catch(function (err) {
         console.error("Error saving user data:", err);
         res.status(500).json({ error: "Failed to save user data." });
-    });
-});
+      });
+  });
+  
 
 app.post('/movies', (req, res) => {
     const movieData = req.body;
