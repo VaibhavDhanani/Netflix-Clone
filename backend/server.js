@@ -5,7 +5,7 @@ const app = express();
 const port = 5000;
 
 app.use(cors());
-app.use(express.json()); // Add this line to parse JSON bodies
+app.use(express.json()); 
 
 app.get('/api', (req, res) =>{
     res.json({"users":["jhonny","joh","janardan"]})
@@ -76,14 +76,12 @@ app.post('/movies', (req, res) => {
     
     newMovie.save()
     .then(() => {
-        console.log('Movie data saved successfully:', newMovie);
         res.status(200).json({ message: 'Movie data saved successfully.' });
     })
     .catch((err) => {
-        console.error('Error saving movie data:', err);
         res.status(500).json({ error: 'Failed to save movie data.' });
     });
 });
 
-mongoose.connect('mongodb://localhost:27017/netflix-clone')
+mongoose.connect('mongodb+srv://22ceueg136:UzhIFg3PW36BWL4B@flixify.x0uihnz.mongodb.net/?retryWrites=true&w=majority&appName=Flixify')
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
