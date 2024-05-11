@@ -6,9 +6,12 @@ import HomePage from "./pages/home-page";
 import Categorypage from "./pages/category-page";
 import SignUp from "./components/SignUp/sign-up";
 import SignIn from "./components/SignIn/sign-in";
-import MovieForm from "./firebase/movie-upload-form";
 import Abc from "./checking-backend/abc";
 import VideoPlayer from "./components/video-player/video-player";
+import MovieForm from "./components/upload-section/uploadContent";
+import MovieUpload from "./components/upload-section/movie-upload";
+import SeasonUpload from "./components/upload-section/series-upload";
+
 function App() {
   return (
      
@@ -20,7 +23,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/movie" element={<MovieForm />} />
+          <Route path="/maincontentupload" element={<MovieForm />} />
+          <Route path="/movieform" element={<MovieUpload />}/>
+          <Route path="/seasonform" element={<SeasonUpload />}/>
           <Route path="/player" element={<VideoPlayer />} />
           <Route path="/category/:title" element={<Categorypage />} />
         </Routes>
