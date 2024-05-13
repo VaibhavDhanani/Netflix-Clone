@@ -547,33 +547,7 @@ const SERIES = [
         totalSeasons: 6,
         totalLikes: 4600,
       },
-      {
-        id: 7,
-        name: "Avangers: Age of Ultron",
-        imageUrl:
-          "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c1f8aba2-6c7d-49f0-b03a-424f8b862dfe/d74cx7d-f73e5d87-b659-4694-9f4d-5ef82361a979.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2MxZjhhYmEyLTZjN2QtNDlmMC1iMDNhLTQyNGY4Yjg2MmRmZVwvZDc0Y3g3ZC1mNzNlNWQ4Ny1iNjU5LTQ2OTQtOWY0ZC01ZWY4MjM2MWE5NzkuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.wTcV0l1HMcyZf19a-Ucgj6OHafMmLfjS5k_6rdOs-Po",
-        ratings: 4.6,
-        totalSeasons: 6,
-        totalLikes: 4600,
-      },
-      {
-        id: 8,
-        name: "Avangers : Infinity War",
-        imageUrl:
-          "https://wallpapers.com/images/featured/avengers-infinity-war-4yngzhbhqmtam73j.jpg",
-        ratings: 4.6,
-        totalSeasons: 6,
-        totalLikes: 4600,
-      },
-      {
-        id: 9,
-        name: "Avangers : Endgame",
-        imageUrl:
-          "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/DB176BD1488D7E4822256EF1778C124FC17388FC1E7F0F6D89B38AFF5FB001F6/scale?width=1200&amp;aspectRatio=1.78&amp;format=webp",
-        ratings: 4.6,
-        totalSeasons: 6,
-        totalLikes: 4600,
-      },
+     
       {
         id: 10,
         name: "Black Panther : Wakanda forever",

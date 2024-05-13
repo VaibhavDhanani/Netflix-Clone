@@ -14,6 +14,16 @@ exports.getMainContent = async (req, res) => {
 };
 
 
+exports.getcategory = async (req, res) => {
+  try {
+    const { title } = req.params;
+    const mainContent = await MainContentModel.findOne({ title });
+    res.json(mainContent);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to get main content.' });
+  }
+};
 exports.uploadMainContent = async (req, res) => {
   const movieData = req.body;
   console.log("Received movie data:", movieData);

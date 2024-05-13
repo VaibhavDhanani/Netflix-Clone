@@ -5,37 +5,32 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddIcon from '@mui/icons-material/Add';
+import { Link } from "react-router-dom"; // Import Link
+
 function Card(props) {
-
   const [isHovered, setIsHovered] = useState(false);
-  // console.dir(props)
+  const { name, imageUrl, ratings, totalLikes, seasons, videoUrl } = props.info;
 
-
-  const { name, imageUrl, ratings, totalLikes, seasons } = props.info;
   return (
-    <div
-      className="imageContainer"
+    <div className="imageContainer"
       onMouseEnter={() => { setIsHovered(true) }}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img
-        src={imageUrl}
-
-        className="image"
-      />
+      <img src={imageUrl} className="image" />
       {isHovered && (
         <div className="additionalInfo">
           <div className="info-container">
             <div className="imgcon">
-              <img
-                src={imageUrl}
-
-                className="infoimg"
-              />
+              <img src={imageUrl} className="infoimg" />
             </div>
             <div className="information">
               <div class="button-container">
-                <button class="circular-button"><PlayArrowIcon></PlayArrowIcon></button>
+                <button class="circular-button"> <Link
+                  to={"/video-player"}
+                  state={{imageUrl :`${imageUrl}` , videoUrl : `${videoUrl}`}}>
+                   <PlayArrowIcon />
+                
+                </Link></button>
                 <button class="circular-button"><AddIcon></AddIcon></button>
                 <button class="circular-button"><CloseIcon></CloseIcon></button>
                 <button class="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button>
@@ -43,9 +38,9 @@ function Card(props) {
               </div>
               <div className="flex flex-col">
                 <p className="moviename">{name}</p>
-                {seasons ? <div className="season">{totalSeasons} seasons</div> : ''}
+                {seasons ? <div className="season">{seasons} seasons</div> : ''}
                 <div className="hashtags">
-                  <p >Likes : {totalLikes}</p>
+                  <p>Likes : {totalLikes}</p>
                   <p>{ratings} / 5.0</p>
                 </div>
               </div>

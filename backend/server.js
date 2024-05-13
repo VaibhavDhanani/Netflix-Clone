@@ -17,6 +17,7 @@ app.post('/api/user', userController.createUser);
 
 app.get('/api/getmaincontent',mainContentController.getMainContent)
 app.post('/api/maincontentupload', mainContentController.uploadMainContent);
+app.get('/api/maincontent/:title', mainContentController.getcategory);
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
