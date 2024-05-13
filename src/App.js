@@ -23,10 +23,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/maincontentupload" element={<MovieForm />} />
+          <Route path="/contentupload" element={<MovieForm />} />
           <Route path="/movieform" element={<MovieUpload />}/>
           <Route path="/seasonform" element={<SeasonUpload />}/>
-          <Route path="/player" element={<VideoPlayer />} />
+          <Route path="/video-player" element={<VideoPlayer /> }/>
           <Route path="/category/:title" element={<Categorypage />} />
         </Routes>
       </div>

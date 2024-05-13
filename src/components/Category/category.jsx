@@ -1,33 +1,47 @@
-import React from "react";
-import "./category.css"
-import SERIES from "../data/movies";
+import React, { useState, useEffect } from "react";
+import "./category.css";
 import Card from "../sub-section/card/card";
-const Category = ({ title }) => {
-    console.log(title);
-        
-    const filteredSeries = SERIES.find(series => series.title === title);
-    const partitions= [];
-    for (let i =0;i<filteredSeries.movies.length;i=i+5) {
-    partitions.push(filteredSeries.movies.slice(i,i+5));
-    }
-    console.log(filteredSeries); // Log the filtered series array
+import CircularProgress from '@mui/material/CircularProgress';
 
-    return (
-        <div className="category-main">
-            <h1 className="title">{title}</h1>
-          {
-            partitions.map((partition, index) => {
-              return (
-                <div className="category-container" >
-                  {partition.map((movie, index) => {
-                    return <Card info={movie} key={movie.id} />;
-                  })}
-                </div>
-              );
-            })
-          }
+const Category = ({ title }) => {
+  const [seriesData, setSeriesData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/maincontent/${title}`);
+        const data = await response.json();
+        console.log(data);
+        setSeriesData(data);
+        setLoading(false); 
+      } catch (error) {
+        console.error("Error fetching series data:", error);
+        setLoading(false); 
+      }
+    };
+
+    fetchData();
+  }, [title]);
+ 
+  return (
+    <div className="category-main">
+      <h1 className="title">{title}</h1>
+      {loading ? (
+        <div className="loader">
+        <CircularProgress color="primary" />
         </div>
-    );
-}
+      ) : (
+        <div className="category-container">
+          {seriesData &&
+            seriesData.subContent &&
+            seriesData.subContent.map((content, index) => (
+              <Card info={content} title={title} key={index} />
+            ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Category;

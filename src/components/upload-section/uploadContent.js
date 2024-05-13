@@ -3,6 +3,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import MovieUpload from "./movie-upload";
 import SeasonUpload from "./series-upload";
+import "./uploadcontent.css"
 // import MovieUpload from "./movie-upload";
 // import SeasonUpload from "./season-upload";
 
