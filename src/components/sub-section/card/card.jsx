@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"; // Import Link
 function Card(props) {
   const [isHovered, setIsHovered] = useState(false);
   const { name, imageUrl, ratings, totalLikes, seasons, videoUrl } = props.info;
-
+  console.dir(seasons)
   return (
     <div className="imageContainer"
       onMouseEnter={() => { setIsHovered(true) }}
@@ -27,18 +27,21 @@ function Card(props) {
               <div class="button-container">
                 <button class="circular-button"> <Link
                   to={"/video-player"}
-                  state={{imageUrl :`${imageUrl}` , videoUrl : `${videoUrl}`}}>
-                   <PlayArrowIcon />
-                
+                  state={{ imageUrl: `${imageUrl}`, videoUrl: `${videoUrl}` }}>
+                  <PlayArrowIcon />
+
                 </Link></button>
-                <button class="circular-button"><AddIcon></AddIcon></button>
-                <button class="circular-button"><CloseIcon></CloseIcon></button>
+                <button class="circular-button" title="Add to my list" ><AddIcon></AddIcon></button>
                 <button class="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button>
-                <button class="circular-buttonl"><KeyboardArrowDownIcon></KeyboardArrowDownIcon></button>
+                <button className="circular-buttonl" {...(seasons ? { title: "show all episodes" } : {})}>
+                  <KeyboardArrowDownIcon />
+                </button>
+
+
               </div>
               <div className="flex flex-col">
                 <p className="moviename">{name}</p>
-                {seasons ? <div className="season">{seasons} seasons</div> : ''}
+                {seasons ? <div className="season">{seasons.length} seasons</div> : ''}
                 <div className="hashtags">
                   <p>Likes : {totalLikes}</p>
                   <p>{ratings} / 5.0</p>

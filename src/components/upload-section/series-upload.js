@@ -77,7 +77,7 @@ const SeasonUpload = (props) => {
           categories: finalObject.categories,
           totalLikes: finalObject.totalLikes,
           ratings: finalObject.ratings,
-          type: "movie",
+          type: "series",
           videoUrl: null,
           seasons: finalObject.seasons,
         },
@@ -86,7 +86,7 @@ const SeasonUpload = (props) => {
 
     console.dir(postData);
 
-    fetch("http://localhost:5000/maincontentupload", {
+    fetch("http://localhost:5000/api/maincontentupload", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -94,6 +94,7 @@ const SeasonUpload = (props) => {
       body: JSON.stringify(postData),
     }).then((response) => {
       if (!response.ok) {
+        console.log(response)
         throw new Error("Network response was not ok");
       }
       setSeasons([
