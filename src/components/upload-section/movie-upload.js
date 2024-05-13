@@ -61,7 +61,7 @@ const MovieUpload = (props) => {
 
     console.dir(postData);
 
-    fetch("http://localhost:5000/maincontentupload", {
+    fetch("http://localhost:5000/api/maincontentupload", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,8 +71,14 @@ const MovieUpload = (props) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+      setAdditionalData({
+        videoUrl: "",
+        video: null,
+        seasons: null,
+      });
       return response.json();
     });
+    
   };
 
   return (
@@ -92,7 +98,7 @@ const MovieUpload = (props) => {
         type="url"
         id="videoUrl"
         name="videoUrl"
-        onClick={handleChange}
+        onChange={handleChange}
         value={additionalData.videoUrl}
         placeholder="Enter Video URL"
         className="block text-black w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"

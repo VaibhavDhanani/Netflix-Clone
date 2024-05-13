@@ -6,59 +6,54 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddIcon from '@mui/icons-material/Add';
 function Card(props) {
- 
-    const [isHovered, setIsHovered] = useState(false);
 
-   
-    const { id, name, imageUrl, ratings, totalLikes, totalSeasons } = props.info;
+  const [isHovered, setIsHovered] = useState(false);
+  // console.dir(props)
+
+
+  const { name, imageUrl, ratings, totalLikes, seasons } = props.info;
   return (
-    
- 
-        <div
-        
-          className="imageContainer"
-          onMouseEnter={() => { setIsHovered(true)}}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <img
-            src={imageUrl}
-           
-            className="image"
-          />
-          {isHovered && (
-            <div className="additionalInfo">
-              <div className="info-container">
-                <div className="imgcon">
-                  <img
-                    src={imageUrl}
-                   
-                    className="infoimg"
-                  />
+    <div
+      className="imageContainer"
+      onMouseEnter={() => { setIsHovered(true) }}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img
+        src={imageUrl}
+
+        className="image"
+      />
+      {isHovered && (
+        <div className="additionalInfo">
+          <div className="info-container">
+            <div className="imgcon">
+              <img
+                src={imageUrl}
+
+                className="infoimg"
+              />
+            </div>
+            <div className="information">
+              <div class="button-container">
+                <button class="circular-button"><PlayArrowIcon></PlayArrowIcon></button>
+                <button class="circular-button"><AddIcon></AddIcon></button>
+                <button class="circular-button"><CloseIcon></CloseIcon></button>
+                <button class="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button>
+                <button class="circular-buttonl"><KeyboardArrowDownIcon></KeyboardArrowDownIcon></button>
+              </div>
+              <div className="flex flex-col">
+                <p className="moviename">{name}</p>
+                {seasons ? <div className="season">{totalSeasons} seasons</div> : ''}
+                <div className="hashtags">
+                  <p >Likes : {totalLikes}</p>
+                  <p>{ratings} / 5.0</p>
                 </div>
-                <div className="information">
-                  <div class="button-container">
-                    <button class="circular-button"><PlayArrowIcon></PlayArrowIcon></button>
-                    <button class="circular-button"><AddIcon></AddIcon></button>
-                    <button class="circular-button"><CloseIcon></CloseIcon></button>
-                    <button class="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button>
-                    <button class="circular-buttonl"><KeyboardArrowDownIcon></KeyboardArrowDownIcon></button>
-                  </div>
-                  <p className="moviename">{name}</p>  <div className="season">{totalSeasons} seasons</div>
-              <div className="hashtags">
-                
-                <p >Likes : {totalLikes}</p>
-                <p>{ratings} / 5.0</p>
-                </div>
+              </div>
             </div>
           </div>
-                
-              </div>
-           
-          )}
-
         </div>
-    
-       
+      )}
+    </div>
   );
 }
 

@@ -20,7 +20,6 @@ const MovieForm = () => {
     type: "movie",
     videoUrl: null,
     video: null,
-    
   });
 
   const handleChange = (e) => {
@@ -63,6 +62,20 @@ const MovieForm = () => {
     e.preventDefault();
     console.log(formData);
     // Add your submit logic here
+    setFormData({
+      title: null,
+      name: null,
+      releaseDate: null,
+      imageUrl: null,
+      image: null,
+      description: null,
+      categories: [],
+      totalLikes: 0,
+      ratings: 0,
+      type: "movie",
+      videoUrl: null,
+      video: null,
+    });
   };
 
   const movieTitles = [
@@ -149,7 +162,7 @@ const MovieForm = () => {
                 className="mr-2 px-2"
               />
             </div>
-              <span className="text-sm text-white">or</span>
+            <span className="text-sm text-white">or</span>
             <input
               type="url"
               id="imageUrl"
@@ -258,7 +271,6 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">18+</span>
               </label>
-              
             </div>
           </div>
 
@@ -279,8 +291,11 @@ const MovieForm = () => {
             </select>
           </div>
 
-          {formData.type === "movie" ? <MovieUpload formData={formData} /> : <SeasonUpload formData={formData} />}
-          
+          {formData.type === "movie" ? (
+            <MovieUpload formData={formData} />
+          ) : (
+            <SeasonUpload formData={formData} />
+          )}
         </form>
       </div>
     </div>

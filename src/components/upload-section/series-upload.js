@@ -96,6 +96,14 @@ const SeasonUpload = (props) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+      setSeasons([
+        {
+          seasonNumber: 1,
+          episodes: [
+            { episodeNumber: 1, videoUrl: "", video: null, description: "" },
+          ],
+        },
+      ]);
       return response.json();
     });
   };
@@ -113,7 +121,12 @@ const SeasonUpload = (props) => {
               onChange={(event) => handleSeasonChange(seasonIndex, event)}
             />
           </h3>
-          <button onClick={() => addEpisode(seasonIndex)} className="w-full mt-5 py-2 px-4 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-blue-600">Add Episode</button>
+          <button
+            onClick={() => addEpisode(seasonIndex)}
+            className="w-full mt-5 py-2 px-4 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-blue-600"
+          >
+            Add Episode
+          </button>
           {season.episodes.map((episode, episodeIndex) => (
             <div key={episodeIndex}>
               <h4>
@@ -175,7 +188,12 @@ const SeasonUpload = (props) => {
           ))}
         </div>
       ))}
-      <button onClick={addSeason} className="w-full mt-5 py-2 px-4 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-blue-600">Add Season</button>
+      <button
+        onClick={addSeason}
+        className="w-full mt-5 py-2 px-4 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-blue-600"
+      >
+        Add Season
+      </button>
       <button
         type="submit"
         onClick={handleSubmit}
