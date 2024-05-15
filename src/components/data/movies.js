@@ -928,40 +928,40 @@ const SERIES = [
 
 export default SERIES;
 
-// const MainContent = {
-//   id: String,
-//   title: String,
-//   subContent: [
-//     {
-//       name: String,
-//       releaseDate: String,
-//       imageUrl: String,
-//       description: String,
-//       categories: [String],
-//       totalLikes: Number,
-//       ratings: Number,
-//       type: {
-//         type: String,
-//         enum: ["movie", "series"],
-//       },
-//       videoUrl: {
-//         type: String,
-//         required: () => {
-//           return this.type === "movie";
-//         },
-//       },
-//       seasons: [
-//         {
-//           seasonNumber: Number,
-//           episodes: [
-//             {
-//               episodeNumber: Number,
-//               videoUrl: String,
-//               description: String,
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//   ],
-// };
+const MainContent = {
+  id: String,
+  title: String,
+  subContent: [
+    {
+      name: String,
+      releaseDate: String,
+      imageUrl: String,
+      description: String,
+      categories: [String],
+      totalLikes: Number,
+      ratings: Number,
+      type: {
+        type: String,
+        enum: ["movie", "series"],
+      },
+      videoUrl: {
+        type: String,
+        required: () => {
+          return this.type === "movie";
+        },
+      },
+      seasons: [
+        {
+          seasonNumber: Number,
+          episodes: [
+            {
+              episodeNumber: Number,
+              videoUrl: String,
+              description: String,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};

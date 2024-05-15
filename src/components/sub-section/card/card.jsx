@@ -5,12 +5,12 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddIcon from '@mui/icons-material/Add';
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom"; 
 
 function Card(props) {
   const [isHovered, setIsHovered] = useState(false);
   const { name, imageUrl, ratings, totalLikes, seasons, videoUrl } = props.info;
-  console.dir(seasons)
+  // console.dir(seasons)
   return (
     <div className="imageContainer"
       onMouseEnter={() => { setIsHovered(true) }}

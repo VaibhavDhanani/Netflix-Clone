@@ -18,7 +18,7 @@ const SubSection = () => {
     fetchData();
   }, []);
 
-  console.log(data);
+  // console.log(data);
 
   // data.map(data => console.log(data.subContent))
 

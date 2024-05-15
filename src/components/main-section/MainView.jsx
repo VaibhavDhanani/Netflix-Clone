@@ -2,32 +2,41 @@ import React, { useState, useEffect } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import './MainView.css';
-import Card from "../sub-section/card/card";
-import Header from '../header/Header';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const MainView = () => {
-  const slides = [
-    {
-      imageSrc: 'https://c4.wallpaperflare.com/wallpaper/295/163/719/anime-anime-boys-picture-in-picture-kimetsu-no-yaiba-kamado-tanjir%C5%8D-hd-wallpaper-preview.jpg',
-      title: 'Demon Slayer',
-      description: 'In a world where demons lurk in the shadows, follow Tanjiro Kamado as he embarks on a journey to avenge his family and save his sister from the curse of becoming a demon.',
-    },
-    {
-      imageSrc: 'https://c4.wallpaperflare.com/wallpaper/142/751/831/landscape-anime-digital-art-fantasy-art-wallpaper-preview.jpg',
-      title: 'Bleach',
-      description: 'Discover the magical world of fantasy and adventure in this captivating anime landscape.',
-    },
-    {
-      imageSrc: 'https://c4.wallpaperflare.com/wallpaper/695/331/660/digital-art-artwork-women-cityscape-wallpaper-preview.jpg',
-      title: 'Attack on Titan',
-      description: 'Experience the bustling cityscape filled with vibrant energy and bustling activity.',
-    },
-  ];
-
-
+  const [slides, setSlides] = useState([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await fetch('http://localhost:5000/api/getmaincontent');
+        const jsonData = await result.json();
+
+        const uniqueSlides = [];
+        while (uniqueSlides.length < 3) {
+          const randomMainContent = jsonData[Math.floor(Math.random() * jsonData.length)];
+          const randomSubContent = randomMainContent.subContent[Math.floor(Math.random() * randomMainContent.subContent.length)];
+          if (!uniqueSlides.some(slide => slide.title === randomMainContent.title)) {
+            uniqueSlides.push({
+              imageUrl: randomSubContent.imageUrl,
+              title: randomMainContent.title,
+              description: randomSubContent.description,
+            });
+          }
+        }
+
+        setSlides(uniqueSlides);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const slideLength = slides.length;
 
   const nextSlide = () => {
@@ -38,14 +47,6 @@ const MainView = () => {
     setCurrentSlideIndex((prevIndex) => (prevIndex === 0 ? slideLength - 1 : prevIndex - 1));
   };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [nextSlide]);
-
   return (
     <div className="carousel">
       <div className="slide-container">
@@ -53,46 +54,42 @@ const MainView = () => {
           <div
             key={index}
             className={`slide ${index === currentSlideIndex ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${slide.imageSrc})` }}
+            style={{ backgroundImage: `url(${slide.imageUrl})` }}
           >
             <div className="content">
-              <div> <h2 className='carousel-title'>{slide.title}</h2>
-                <p className='carousel-description'>{slide.description}</p></div>
-              
-
+              <h2 className='carousel-title'>{slide.title}</h2>
+              <p className='carousel-description'>{slide.description}</p>
             </div>
             <div className='play-button-container'>
-
-                <button
-                  className="playButton mx-1 bg-white text-black rounded py-2 px-4 font-bold hover:bg-blue-gray-400 focus:outline-none"
-                  style={{
-                    transition: 'background-color 0.3s',
-                    borderColor: '#CBD5E0',
-                  }}
-                >
-                  <PlayArrowIcon className="mr-1" />
-                  Play
-                </button>
-                <button
-                  className="infoButton mx-1 bg-slate-600 text-black rounded py-2 px-4 font-bold hover:bg-blue-gray-400 focus:outline-none"
-                  style={{
-                    transition: 'background-color 0.3s',
-                    borderColor: '#CBD5E0',
-                  }}
-                >
-                  <InfoIcon className="mr-1" />
-                  More Info
-                </button>
-
-              </div>
+              <button
+                className="playButton mx-1 bg-white text-black rounded py-2 px-4 font-bold hover:bg-blue-gray-400 focus:outline-none"
+                style={{
+                  transition: 'background-color 0.3s',
+                  borderColor: '#CBD5E0',
+                }}
+              >
+                <PlayArrowIcon className="mr-1" />
+                Play
+              </button>
+              <button
+                className="infoButton mx-1 bg-slate-600 text-black rounded py-2 px-4 font-bold hover:bg-blue-gray-400 focus:outline-none"
+                style={{
+                  transition: 'background-color 0.3s',
+                  borderColor: '#CBD5E0',
+                }}
+              >
+                <InfoIcon className="mr-1" />
+                More Info
+              </button>
+            </div>
           </div>
         ))}
       </div>
       <button className="prev" onClick={prevSlide}>
-        <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
+        <ArrowBackIosNewIcon />
       </button>
       <button className="next" onClick={nextSlide}>
-        <ArrowForwardIosIcon></ArrowForwardIosIcon>
+        <ArrowForwardIosIcon />
       </button>
     </div>
   );
