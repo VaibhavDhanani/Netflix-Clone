@@ -6,7 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@material-tailwind/react";
 import firebase from "firebase/compat/app"
 import { firebaseConfig } from "./firebase/firebase.config";
-
+import { Provider } from "react-redux";
+import {store} from "./redux/store"
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
@@ -14,10 +15,13 @@ const app = firebase.initializeApp(firebaseConfig);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
+  <ThemeProvider>
+    <Provider store={store}>
       <App />
-    </ThemeProvider>
-  </React.StrictMode>
+    </Provider>
+  </ThemeProvider>
+</React.StrictMode>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
