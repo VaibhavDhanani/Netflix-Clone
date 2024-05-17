@@ -54,7 +54,12 @@ const MainView = () => {
           <div
             key={index}
             className={`slide ${index === currentSlideIndex ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${slide.imageUrl})` }}
+            style={{ 
+              backgroundImage: `url(${slide.imageUrl})`,
+              backgroundSize: 'contain', 
+              backgroundPosition: 'center', 
+              backgroundRepeat: 'no-repeat'  
+            }}
           >
             <div className="content">
               <h2 className='carousel-title'>{slide.title}</h2>
