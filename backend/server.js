@@ -59,7 +59,7 @@ const session = await stripe.checkout.sessions.create({
 
 })
  console.log(session);
-res.json({id: session.id});
+res.json({id: session.id,url:session.url});
 
 })
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
