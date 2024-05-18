@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+    const [user, setUser] = useState(null);
+    const [userName, setUserName] = useState('');
     const dispatch = useDispatch();
-    let userName = null
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -20,15 +21,32 @@ const Navbar = () => {
 
     useEffect(() => {
         const getUser = async () => {
-            const { data: { user } } = await supabase.auth.getUser()
-            userName = user.user_metadata.name
-            console.log(user.user_metadata.name);
-            dispatch(setCurrentUser(user))
-        }
+            try {
+                const { data: { user } } = await supabase.auth.getUser();
+                dispatch(setCurrentUser(user));
+                setUser(user);
+                setUserName(user.user_metadata.name);
+            } catch (error) {
+                console.error('Error fetching user:', error);
+            }
+        };
         getUser();
-    }, [dispatch])
+        const handleResize = () => {
+            if (window.innerWidth > 1000) {
+                setIsOpen(false);
+            }
+        };
+    
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [dispatch]);
+    
 
-    console.log(userName)
+    // console.dir(user)
+    // console.log(userName)
+
     return (
         <nav className="fixed top-0 w-full m-0 bg-transparent z-10">
             <div className=" px-6 py-3 m-0">

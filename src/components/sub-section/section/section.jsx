@@ -4,9 +4,9 @@ import "./section.css"
 const Section = (props) => {
   // console.dir(props.data)
 
-  const {title,subContent} = {...props.data};
+  const { title, subContent } = { ...props.data };
   const id = props.data._id
-  
+
   const linkurl = `category/${title}`;
   return (
     <div className='flex flex-col'>
@@ -16,10 +16,9 @@ const Section = (props) => {
       </a>
 
       <div className='card-container'>
-        {subContent.filter((oneSeries, index) => index < 5).map(oneSeries => <Card key={oneSeries.id} info={oneSeries} />)}
+        {subContent.filter((oneSeries, index) => index < 5).map(oneSeries => <Card key={oneSeries._id} info={oneSeries} />)}
       </div>
     </div>
-    // <div></div>
   )
 }
 
