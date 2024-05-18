@@ -16,6 +16,7 @@ mongoose.connect(
 
 app.get('/api/getdata', userController.getAllUsers);
 app.post('/api/user', userController.createUser);
+app.get('/api/user', userController.getCurrentUser);
 
 app.get('/api/getmaincontent',mainContentController.getMainContent)
 app.post('/api/maincontentupload', mainContentController.uploadMainContent);
