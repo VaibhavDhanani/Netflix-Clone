@@ -17,15 +17,11 @@ const SubSection = () => {
 
     fetchData();
   }, []);
-
-  // console.log(data);
-
-  // data.map(data => console.log(data.subContent))
-
+  console.log(data);
   return (
     <div>
       {data.map(dataItem => (
-        <Section key={dataItem.id} data={dataItem} />
+        <Section key={dataItem._id} data={dataItem} />
       ))}
     </div>
   );

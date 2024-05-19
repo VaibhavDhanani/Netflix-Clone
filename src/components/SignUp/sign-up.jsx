@@ -6,9 +6,9 @@ import CheckIcon from '@mui/icons-material/Check';
 import "./signup.css"
 const SignUp = ({ successPayment }) => {
 
-  console.log(successPayment)
+  // console.log(successPayment)
   const [user, setUser] = useState({
-    displayName: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: ""
@@ -24,7 +24,6 @@ const SignUp = ({ successPayment }) => {
 
   const [showAdditionalForm, setShowAdditionalForm] = useState(false);
 
-
   const handleSignup = async (event) => {
     event.preventDefault();
     let userDataToSend;
@@ -38,9 +37,6 @@ const SignUp = ({ successPayment }) => {
       } else {
         console.log("No user data found in localStorage.");
       }
-
-
-     
 
       try {
         const response = await fetch("http://localhost:5000/api/user", {
@@ -124,10 +120,17 @@ const SignUp = ({ successPayment }) => {
 
   const handleAdditionalInfoChange = (event) => {
     const { name, value } = event.target;
-    setAdditionalInfo((prevInfo) => ({
-      ...prevInfo,
-      [name]: value,
-    }));
+    if (name === 'plan') {
+      setAdditionalInfo((prevInfo) => ({
+        ...prevInfo,
+        [name]: value,
+      }));
+    } else {
+      setAdditionalInfo((prevInfo) => ({
+        ...prevInfo,
+        [name]: value,
+      }));
+    }
   };
 
   const showAdditionalFormHandler = () => {
@@ -144,9 +147,6 @@ const SignUp = ({ successPayment }) => {
               alt=""
               style={{ outline: "5px solid white" }}
             />
-
-
-
             <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
               Payment Successful , Watch netflix and chill
             </Alert>
@@ -161,7 +161,7 @@ const SignUp = ({ successPayment }) => {
             <form action="#">
               <div className="mb-4">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
-                <input type="text" autoComplete="off" id="name" name="displayName" value={user.displayName} className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-2 focus:ring-indigo-800 focus:border-indigo-800" placeholder="username" onChange={handleChange} required />
+                <input type="text" autoComplete="off" id="name" name="name" value={user.name} className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-2 focus:ring-indigo-800 focus:border-indigo-800" placeholder="username" onChange={handleChange} required />
                 <label htmlFor="email" className="mt-2 block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
                 <input type="email" autoComplete="off" id="email" name="email" value={user.email} className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-2 focus:ring-indigo-800 focus:border-indigo-800" onChange={handleChange} placeholder="your@email.com" required />
               </div>
@@ -217,7 +217,6 @@ const SignUp = ({ successPayment }) => {
             )}
           </>
         )}
-
       </div>
     </div>
   );
