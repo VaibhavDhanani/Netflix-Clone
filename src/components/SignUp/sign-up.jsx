@@ -60,7 +60,7 @@ const SignUp = ({ successPayment }) => {
         console.error("Error sending user information to server:", error.message);
       }
 
-      console.log(data, error);
+     
     } else {
       alert("Password and confirm password don't match");
     }
