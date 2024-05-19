@@ -10,18 +10,18 @@ import Season from "../season/season";
 
 function Card(props) {
   const [isHovered, setIsHovered] = useState(false);
+  const { info } = props;
   const { name, imageUrl, ratings, totalLikes, seasons, videoUrl } = props.info;
   const [isClicked, setIsClicked] = useState(false);
-
+  console.log(info)
   const toogle = () => {
     setIsClicked(!isClicked)
   }
-  // console.dir(seasons)
+ 
 
   const [selectedSeasonNumber, setSelectedSeasonNumber] = useState(1);
 
   const handleSeasonChange = event => {
-    // Update the selected season number when the user selects a season
     setSelectedSeasonNumber(event.target.value);
   };
 
@@ -40,11 +40,10 @@ function Card(props) {
             </div>
             <div className="information">
               <div className="button-container">
-                <button className="circular-button"> <Link
-                  to={"/video-player"}
-                  state={{ imageUrl: `${imageUrl}`, videoUrl: `${videoUrl}` }}>
-                  <PlayArrowIcon />
-
+                <button className="circular-button">  <Link
+                    to={"/video-player"}
+                      state= {{ info: props.info}} >
+                      <PlayArrowIcon />
                 </Link></button>
                 <button className="circular-button" title="Add to my list" ><AddIcon></AddIcon></button>
                 <button className="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button>
@@ -81,9 +80,9 @@ function Card(props) {
                         </select>
                       </div>
                     )}
-                    {selectedSeasonNumber && (
+                    {seasons && (
                       <Season
-                        season={seasons[selectedSeasonNumber - 1]}
+                        season={info.seasons[selectedSeasonNumber - 1]}
                       />
                     )}
                   </div>
