@@ -13,7 +13,12 @@ const SignIn = () => {
             const session = await supabase.auth.getSession();
             if (session) {
                 dispatch(setCurrentUser(session));
-                // console.log("test")
+                
+                if (session) {
+                   console.log(session.data.session.user);
+                } else {
+                    console.log("no user");
+                }
             }
         }
         checkSession();
@@ -33,7 +38,6 @@ const SignIn = () => {
         }, []);
         data.subscription.unsubscribe();
     }, [dispatch]);
-
     const handleGoogleSubmit = async (event) => {
         event.preventDefault();
         const { user, error } = await supabase.auth.signInWithOAuth({
@@ -42,8 +46,11 @@ const SignIn = () => {
                 emailRedirectTo: 'http://localhost:3000/signin'
             }
         });
-        // dispatch(setCurrentUser(user));
+    
+        
     };
+    
+    
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -61,6 +68,7 @@ const SignIn = () => {
         } catch (error) {
             console.error('Error signing in:', error.message);
         }
+
     };
 
     const handleChange = (event) => {

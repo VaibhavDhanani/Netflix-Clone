@@ -39,17 +39,7 @@ const SignUp = ({ successPayment }) => {
       }
 
 
-      const { data, error } = await supabase.auth.signUp({
-        email: userDataToSend.email,
-        password: userDataToSend.password,
-        options: {
-          data: {
-            name: userDataToSend.name,
-            full_name: userDataToSend.name,
-            email_verified: true
-          }
-        }
-      });
+     
 
       try {
         const response = await fetch("http://localhost:5000/api/user", {
