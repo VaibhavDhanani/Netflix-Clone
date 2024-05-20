@@ -14,12 +14,16 @@ mongoose.connect(
   "mongodb+srv://22ceueg136:UzhIFg3PW36BWL4B@flixify.x0uihnz.mongodb.net/?retryWrites=true&w=majority&appName=Flixify"
 );
 
-app.get('/api/getdata', userController.getAllUsers);
-app.post('/api/user', userController.createUser);
+app.get('/api/getusers', userController.getAllUsers);
 app.get('/api/user', userController.getCurrentUser);
+app.post('/api/user', userController.createUser);
+app.post('/api/updateuserlist', userController.updateUserList);
 
+
+app.get('/api/getcontent',mainContentController.getContent)
 app.get('/api/getmaincontent',mainContentController.getMainContent)
 app.post('/api/maincontentupload', mainContentController.uploadMainContent);
+app.post('/api/updatecontent', mainContentController.updateContent);
 app.get('/api/maincontent/:title', mainContentController.getcategory);
 
 app.post('/api/payment',async(req, res) => {

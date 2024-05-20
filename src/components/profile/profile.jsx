@@ -15,50 +15,31 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../redux/User/user";
-import { supabase } from "../../supabase/supabaseClient";
 import { Navigate } from "react-router-dom";
 
-function Profile(props) {
-  const [userdb, setUser] = useState({});
+function Profile() {
+  const [user, setUser] = useState({});
   const [selectedOption, setSelectedOption] = useState("overview");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let email = ""
     const getUser = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        dispatch(setCurrentUser(user));
-        email = user.user_metadata.email
-        console.log(email);
-        
+        const userfetch = localStorage.getItem('user')
+        if (userfetch) {
+          const user = JSON.parse(userfetch);
+          dispatch(setCurrentUser(user));
+          console.log(user)
+          setUser(user);
+        }
       } catch (error) {
         console.error('Error fetching user:', error);
       }
     };
+
     getUser();
-
-    const fetchUser = async () => {
-      try {
-        const email = 'test256@gmail.com'; 
-        const params = new URLSearchParams({ email });
-
-        const response = await fetch(`http://localhost:5000/api/user?${params}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setUser(data);
-      } catch (error) {
-        console.error('Failed to fetch user:', error);
-      }
-    };
-
-
-    fetchUser();
   }, [dispatch]);
 
-  console.log(userdb);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
@@ -87,8 +68,8 @@ function Profile(props) {
             </div>
             <h2>Membership details</h2>
             <div className="plan">
-              <h2>Plan name:  {userdb.plan}</h2>
-              <h2>Plan date : {formatDate(userdb.date)}</h2>
+              <h2>Plan name:  {user.plan}</h2>
+              <h2>Plan date : {formatDate(user.date)}</h2>
               <h2>payment details</h2>
               <h3>Payment Method : Visa Card</h3>
               <hr />

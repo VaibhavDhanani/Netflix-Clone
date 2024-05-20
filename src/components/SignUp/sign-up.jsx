@@ -37,7 +37,6 @@ const SignUp = ({ successPayment }) => {
       } else {
         console.log("No user data found in localStorage.");
       }
-
       try {
         const response = await fetch("http://localhost:5000/api/user", {
           method: "POST",
@@ -66,7 +65,6 @@ const SignUp = ({ successPayment }) => {
     }
 
   };
-
 
   const handleChange = (event) => {
     const { name, value } = event.target;

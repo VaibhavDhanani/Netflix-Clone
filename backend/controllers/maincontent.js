@@ -9,10 +9,25 @@ exports.getMainContent = async (req, res) => {
     res.json(mainContent);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to get main content.' });
+    res.status(500).json({ error: "Failed to get main content." });
   }
 };
 
+exports.getContent = async (req, res) => {
+  try {
+    const mainContent = await MainContentModel.findOne({
+      title: req.query.title,
+    });
+    console.log(mainContent);
+    const reqcontent = mainContent.subContent.find(
+      (item) => item._id.toString() === req.query.id
+    );
+    res.json(reqcontent);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to get main content." });
+  }
+};
 
 exports.getcategory = async (req, res) => {
   try {
@@ -21,7 +36,7 @@ exports.getcategory = async (req, res) => {
     res.json(mainContent);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to get main content.' });
+    res.status(500).json({ error: "Failed to get main content." });
   }
 };
 exports.uploadMainContent = async (req, res) => {
@@ -88,4 +103,23 @@ exports.uploadMainContent = async (req, res) => {
     .catch((err) => {
       res.status(500).json({ error: "Failed to find movie data." });
     });
+};
+
+exports.updateContent = async (req, res) => {
+  // const { email, ...userData } = req.body;
+  // try {
+  //   const updatedSubContent = await MainContentModel.findOneAndUpdate(
+  //     { email: email },
+  //     { ...userData },
+  //     { new: true, upsert: true }
+  //   );
+  //   if (!updatedUser) {
+  //     return res.status(404).json({ error: 'User not found.' });
+  //   }
+  //   console.log('User data updated successfully:', updatedUser);
+  //   res.status(200).json({ message: 'User data updated successfully.', user: updatedUser });
+  // } catch (err) {
+  //   console.error('Error updating user data:', err);
+  //   res.status(500).json({ error: 'Failed to update user data.' });
+  // }
 };

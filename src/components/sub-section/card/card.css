@@ -108,6 +108,17 @@
     background-color: white;
     border: none;
   }
+
+  .circular-buttonactive{
+    width: 37.26px;
+    height: 37.26px;
+    border-radius: 50%;
+    margin: 4px;
+    font-size: 13px;
+    color: black ;
+    background-color: white;
+    border: none;
+  }
   
   .season {
     margin-left: 3px;

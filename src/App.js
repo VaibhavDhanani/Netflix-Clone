@@ -14,15 +14,16 @@ import SeasonUpload from "./components/upload-section/series-upload";
 import Cancelpayment from "./components/SignUp/cancel-payment";
 import SignupPage from "./components/SignUp/signup-page";
 import { Provider } from "react-redux";
+import UserList from "./pages/userList";
 
 function App() {
   return (
-    <Provider store={store}>
       <BrowserRouter>
         <div className="App">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/node" element={<Abc />} />
+            <Route path="/my-list" element={<UserList />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignupPage />} />
@@ -35,7 +36,6 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-    </Provider>
   );
 }
 

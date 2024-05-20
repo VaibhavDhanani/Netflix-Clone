@@ -12,7 +12,7 @@ const Category = ({ title }) => {
       try {
         const response = await fetch(`/api/maincontent/${title}`);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setSeriesData(data);
         setLoading(false); 
       } catch (error) {
