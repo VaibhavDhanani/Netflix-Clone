@@ -9,9 +9,9 @@ function VideoPlayer() {
   const location = useLocation();
   const navigate = useNavigate();
   const { state } = location;
-
-  const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0);
-  const [currentSeasonIndex, setCurrentSeasonIndex] = useState(0);
+  const { episodeNumber, seasonNumber, info } = state;
+  const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(episodeNumber);
+  const [currentSeasonIndex, setCurrentSeasonIndex] = useState(seasonNumber);
   let videoUrl = state.info.videoUrl;
   let episodes = [];
 let title = state.info.name;
