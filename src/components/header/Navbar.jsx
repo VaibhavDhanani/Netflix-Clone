@@ -22,27 +22,31 @@ const Navbar = () => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const { data: { user } } = await supabase.auth.getUser();
-                dispatch(setCurrentUser(user));
-                setUser(user);
-                setUserName(user.user_metadata.name);
+                const userfetch = localStorage.getItem('user')
+                if (userfetch) {
+                    const user = JSON.parse(userfetch);
+                    dispatch(setCurrentUser(user));
+                    console.log(user)
+                    setUser(user);
+                }
             } catch (error) {
                 console.error('Error fetching user:', error);
             }
         };
+
         getUser();
         const handleResize = () => {
             if (window.innerWidth > 1000) {
                 setIsOpen(false);
             }
         };
-    
+
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, [dispatch]);
-    
+
 
     // console.dir(user)
     // console.log(userName)

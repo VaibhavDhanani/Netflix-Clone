@@ -70,7 +70,6 @@ const SignUp = ({ successPayment }) => {
 
   };
 
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUser((prevUser) => ({

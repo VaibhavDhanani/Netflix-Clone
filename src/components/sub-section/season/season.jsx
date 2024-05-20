@@ -5,9 +5,9 @@ const Season = ({ season }) => {
   const { seasonNumber, episodes } = season;
   const navigate = useNavigate();
 
-  const handleVideoPlay = (videoUrl,episodeNumber) => {
-    navigate('/video-player', { state: { videoUrl,episodeNumber, episodes } });
-  };
+  // const handleVideoPlay = (videoUrl,episodeNumber) => {
+  //   navigate('/video-player', { state: { videoUrl,episodeNumber, episodes } });
+  // };
 
   return (
     <div className="grid grid-cols-1 gap-4 bg-transparent">
@@ -20,7 +20,7 @@ const Season = ({ season }) => {
             <video
               controls
               className="w-40 rounded-lg shadow-md"
-              onPlay={() => handleVideoPlay(ep.videoUrl,ep.episodeNumber)}
+              // onPlay={() => handleVideoPlay(ep.videoUrl,ep.episodeNumber)}
             >
               <source src={ep.videoUrl} type="video/mp4" />
               Your browser does not support the video tag.

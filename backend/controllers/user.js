@@ -25,6 +25,29 @@ exports.createUser = async (req, res) => {
   }
 };
 
+exports.updateUserList = async (req, res) => {
+  const { email, ...userData } = req.body; 
+
+  try {
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { email: email }, 
+      { ...userData },
+      { new: true, upsert: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+
+    console.log('User data updated successfully:', updatedUser);
+    res.status(200).json({ message: 'User data updated successfully.', user: updatedUser });
+  } catch (err) {
+    console.error('Error updating user data:', err);
+    res.status(500).json({ error: 'Failed to update user data.' });
+  }
+};
+
+
 exports.getCurrentUser = async (req, res) => {
   console.log(req.query.email);  
   try {
