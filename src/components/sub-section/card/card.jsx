@@ -111,7 +111,6 @@ function Card(props) {
                   to={"/video-player"}
                   state={{ info: props.info }}>
                   <PlayArrowIcon />
-
                 </Link></button>
                 <button onClick={handleUserList} className={` ${isListed ? 'circular-buttonactive' : 'circular-button'}  `} title={`${!isListed ? "Add to list" : "Remove from list"}`} ><AddIcon></AddIcon></button>
                 {/* <button className="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button> */}

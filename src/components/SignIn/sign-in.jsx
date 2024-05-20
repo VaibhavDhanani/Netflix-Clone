@@ -5,6 +5,7 @@ import { setCurrentUser } from '../../redux/User/user';
 const SignIn = () => {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const dispatch = useDispatch();
+
     const [error, setError] = useState("");
 
     const handleLogin = async (event) => {
