@@ -25,7 +25,6 @@ app.get('/api/getmaincontent',mainContentController.getMainContent)
 app.post('/api/maincontentupload', mainContentController.uploadMainContent);
 app.post('/api/updatecontent', mainContentController.updateContent);
 app.get('/api/maincontent/:title', mainContentController.getcategory);
-
 app.post('/api/payment',async(req, res) => {
 const user = req.body;
 console.log("i got the data")
@@ -60,7 +59,6 @@ const session = await stripe.checkout.sessions.create({
       mode : "payment",
       success_url: `http://localhost:3000/signup?success=true`,
       cancel_url: "http://localhost:3000/cancel",
-     
 
 })
  console.log(session);

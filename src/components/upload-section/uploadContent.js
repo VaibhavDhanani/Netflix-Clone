@@ -16,6 +16,7 @@ const MovieForm = () => {
     image: null,
     description: null,
     categories: [],
+    plan: "basic",
     totalLikes: 0,
     ratings: 0,
     type: "movie",
@@ -273,6 +274,25 @@ const MovieForm = () => {
                 <span className="ml-2">18+</span>
               </label>
             </div>
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="plan" className="block mb-2 text-dark">
+              Plan Type:
+            </label>
+            <select
+              id="plan"
+              name="plan"
+              value={formData.plan}
+              onChange={handleChange}
+              className="block w-full text-black rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 px-2 py-1"
+              required
+            >
+              <option value="basic">Basic</option>
+              <option value="pro">Pro</option>
+              <option value="special">Special</option>
+              <option value="premium">Premium</option>
+            </select>
           </div>
 
           <div className="mb-4">

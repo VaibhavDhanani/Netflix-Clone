@@ -12,11 +12,13 @@ const SeasonUpload = (props) => {
     },
   ]);
 
-  const addSeason = () => {
+  const addSeason = (e) => {
+    e.preventDefault();
     setSeasons([...seasons, { seasonNumber: seasons.length, episodes: [] }]);
   };
 
-  const addEpisode = (seasonIndex) => {
+  const addEpisode = (e,seasonIndex) => {
+    e.preventDefault();
     const newSeasons = [...seasons];
     newSeasons[seasonIndex].episodes.push({
       episodeNumber: newSeasons[seasonIndex].episodes.length,
@@ -123,7 +125,7 @@ const SeasonUpload = (props) => {
             />
           </h3>
           <button
-            onClick={() => addEpisode(seasonIndex)}
+            onClick={(e) => addEpisode(e,seasonIndex)}
             className="w-full mt-5 py-2 px-4 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-blue-600"
           >
             Add Episode

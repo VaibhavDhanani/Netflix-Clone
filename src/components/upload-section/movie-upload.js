@@ -50,6 +50,7 @@ const MovieUpload = (props) => {
           imageUrl: finalObject.imageUrl,
           description: finalObject.description,
           categories: finalObject.categories,
+          plan: finalObject.plan,
           totalLikes: finalObject.totalLikes,
           ratings: finalObject.ratings,
           type: "movie",

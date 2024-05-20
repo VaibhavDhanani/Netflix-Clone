@@ -10,6 +10,7 @@ const MainContent = new mongoose.Schema({
       imageUrl: String,
       description: String,
       categories: [String],
+      plan: String,
       totalLikes: Number,
       ratings: Number,
       type: {
