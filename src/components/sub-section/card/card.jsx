@@ -10,7 +10,7 @@ import Season from "../season/season";
 import { useDispatch } from "react-redux";
 function Card(props) {
   const [user, setUser] = useState({});
-  const {info} = props;
+  const { info } = props;
   const [isHovered, setIsHovered] = useState(false);
   const { _id, name, imageUrl, description, ratings, totalLikes, seasons, videoUrl } = props.info;
   const [isClicked, setIsClicked] = useState(false);
@@ -37,7 +37,7 @@ function Card(props) {
 
   useEffect(() => {
     fetchUser();
-  },[]);
+  });
 
   const updateUser = async (user) => {
     try {
@@ -84,7 +84,11 @@ function Card(props) {
           throw new Error("Failed to send user information to the server.");
         }
         console.log("User information sent successfully.");
-        fetchUser();
+        const fetchData = async () => {
+          const user = await fetchUser();
+        };
+        fetchData();
+        console.log("object")
       } catch (error) {
         console.error("Error sending user information to server:", error.message);
       }
@@ -106,12 +110,12 @@ function Card(props) {
             </div>
             <div className="information">
               <div className="button-container">
-                <button className="circular-button"> 
-                <Link
-                  to={"/video-player"}
-                  state={{ info: props.info }}>
-                  <PlayArrowIcon />
-                </Link></button>
+                <button className="circular-button">
+                  <Link
+                    to={"/video-player"}
+                    state={{ info: props.info }}>
+                    <PlayArrowIcon />
+                  </Link></button>
                 <button onClick={handleUserList} className={` ${isListed ? 'circular-buttonactive' : 'circular-button'}  `} title={`${!isListed ? "Add to list" : "Remove from list"}`} ><AddIcon></AddIcon></button>
                 {/* <button className="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button> */}
                 <button onClick={toggle} className="circular-buttonl" {...(seasons ? { title: "show all episodes" } : {})}>

@@ -1,6 +1,6 @@
 const MainContentModel = require("../models/MainContent");
 
-console.log(MainContentModel);
+// console.log(MainContentModel);
 
 exports.getMainContent = async (req, res) => {
   try {
@@ -39,6 +39,28 @@ exports.getcategory = async (req, res) => {
     res.status(500).json({ error: "Failed to get main content." });
   }
 };
+
+
+exports.getUserList = async (req, res) => {
+  try {
+    const list = req.query.list.split(",");
+    const result = [];
+    const docs = await MainContentModel.find({ 'subContent.name': { $in: list } });
+    docs.forEach(doc => {
+      doc.subContent.forEach(sub => {
+        if (list.includes(sub.name)) {
+          result.push(sub);
+        }
+      });
+    });
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to get main content." });
+  }
+};
+
+
 exports.uploadMainContent = async (req, res) => {
   const movieData = req.body;
   console.log("Received movie data:", movieData);
@@ -107,21 +129,5 @@ exports.uploadMainContent = async (req, res) => {
     });
 };
 
-exports.updateContent = async (req, res) => {
-  // const { email, ...userData } = req.body;
-  // try {
-  //   const updatedSubContent = await MainContentModel.findOneAndUpdate(
-  //     { email: email },
-  //     { ...userData },
-  //     { new: true, upsert: true }
-  //   );
-  //   if (!updatedUser) {
-  //     return res.status(404).json({ error: 'User not found.' });
-  //   }
-  //   console.log('User data updated successfully:', updatedUser);
-  //   res.status(200).json({ message: 'User data updated successfully.', user: updatedUser });
-  // } catch (err) {
-  //   console.error('Error updating user data:', err);
-  //   res.status(500).json({ error: 'Failed to update user data.' });
-  // }
-};
+
+
