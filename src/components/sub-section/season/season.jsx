@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const Season = ({ season }) => {
+import { Link } from 'react-router-dom';
+const Season = ({ season, info }) => {
   const { seasonNumber, episodes } = season;
   const navigate = useNavigate();
 
@@ -20,18 +20,28 @@ const Season = ({ season }) => {
             <video
               controls
               className="w-40 rounded-lg shadow-md"
-              // onPlay={() => handleVideoPlay(ep.videoUrl,ep.episodeNumber)}
+              src={ep.videoUrl}
+            // onPlay={() => handleVideoPlay(ep.videoUrl,ep.episodeNumber)}
             >
-              <source src={ep.videoUrl} type="video/mp4" />
+
               Your browser does not support the video tag.
             </video>
           </div>
-          <div className="mx-4 flex flex-col justify-start align-top">
-            <p className="text-base font-semibold text-left">
-              Chapter {ep.episodeNumber}
-            </p>
-            <p className="text-sm">{ep.description}</p>
-          </div>
+          <Link
+            to={"/video-player"}
+            state={{
+              episodeNumber: ep.episodeNumber - 1,
+              seasonNumber: seasonNumber - 1,
+              info: info
+            }}>
+            <div className="mx-4 flex flex-col justify-start align-top" >
+              <p className="text-base font-semibold text-left">
+                Chapter {ep.episodeNumber}
+              </p>
+              <p style={{  textDecoration: 'underline', cursor: 'pointer' }}>Watch now </p>
+
+              <p className="text-sm">{ep.description}</p>
+            </div></Link>
         </div>
       ))}
     </div>

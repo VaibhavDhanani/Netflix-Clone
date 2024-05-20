@@ -110,12 +110,17 @@ function Card(props) {
             </div>
             <div className="information">
               <div className="button-container">
-                <button className="circular-button">
-                  <Link
-                    to={"/video-player"}
-                    state={{ info: props.info }}>
-                    <PlayArrowIcon />
-                  </Link></button>
+                <button className="circular-button"> 
+                <Link
+                  to={"/video-player"}
+                  state={{
+                    episodeNumber: 0,
+            seasonNumber: 0, 
+                    info: props.info
+                  
+                  }}>
+                  <PlayArrowIcon />
+                </Link></button>
                 <button onClick={handleUserList} className={` ${isListed ? 'circular-buttonactive' : 'circular-button'}  `} title={`${!isListed ? "Add to list" : "Remove from list"}`} ><AddIcon></AddIcon></button>
                 {/* <button className="circular-button"><ThumbUpOffAltIcon></ThumbUpOffAltIcon></button> */}
                 <button onClick={toggle} className="circular-buttonl" {...(seasons ? { title: "show all episodes" } : {})}>
@@ -153,7 +158,8 @@ function Card(props) {
                     )}
                     {seasons && (
                       <Season
-                        season={info.seasons[selectedSeasonNumber - 1]}
+                        season={info.seasons[selectedSeasonNumber - 1] }
+                        info={props.info}
                       />
                     )}
                   </div>

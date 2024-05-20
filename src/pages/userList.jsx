@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/header/Navbar';
 import Header from '../components/header/Header';
 import Bigfooter from '../components/footer/Bigfooter';
+import { Link } from 'react-router-dom';
 
 const UserList = () => {
 	const [user, setUser] = useState({});
@@ -53,29 +54,29 @@ const UserList = () => {
 	const handleRemove = async (name) => {
 		const newList = user.mylist.filter(item => item !== name);
 		console.log(newList);
-		const userDataToSend = {...user, mylist: newList };
+		const userDataToSend = { ...user, mylist: newList };
 		try {
-      const response = await fetch("http://localhost:5000/api/updateuserlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userDataToSend),
-      });
-      const fetchData = async () => {
+			const response = await fetch("http://localhost:5000/api/updateuserlist", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(userDataToSend),
+			});
+			const fetchData = async () => {
 				const user = await fetchUser();
 				if (user) {
 					await fetchSubContent(user);
 				}
 			};
 			fetchData();
-      if (!response.ok) {
-        throw new Error("Failed to send user information to the server.");
-      }
-      console.log("User information sent successfully.");
-    } catch (error) {
-      console.error("Error sending user information to server:", error.message);
-    }
+			if (!response.ok) {
+				throw new Error("Failed to send user information to the server.");
+			}
+			console.log("User information sent successfully.");
+		} catch (error) {
+			console.error("Error sending user information to server:", error.message);
+		}
 	}
 
 
@@ -104,12 +105,21 @@ const UserList = () => {
 							<p className="text-gray-400 mt-2 text-left">{item.description}</p>
 							<div className="mt-4 flex items-center justify-between">
 								<div>
-									<a
-										href="#"
-										className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
-									>
-										Watch Now
-									</a>
+									<Link
+										to={"/video-player"}
+										state={{
+											episodeNumber: 0,
+											seasonNumber: 0,
+											info: item
+
+										}}>
+										<a
+											href="#"
+											className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
+										>
+											Watch Now
+										</a>
+									</Link>
 									<button
 										onClick={() => handleRemove(item.name)}
 										className=" mx-5 inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"

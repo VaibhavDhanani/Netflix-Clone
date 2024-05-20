@@ -49,10 +49,10 @@ exports.updateUserList = async (req, res) => {
 
 
 exports.getCurrentUser = async (req, res) => {
-  console.log(req.query.email);  
+   
   try {
     const user = await UserModel.findOne({ email: req.query.email });
-    console.log(user)
+    
     res.json(user);
   } catch (err) {
     console.log(err);
