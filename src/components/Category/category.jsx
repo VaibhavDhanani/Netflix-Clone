@@ -3,7 +3,7 @@ import "./category.css";
 import Card from "../sub-section/card/card";
 import CircularProgress from '@mui/material/CircularProgress';
 
-const Category = ({ title }) => {
+const Category = ({ title ,titleToShow }) => {
   const [seriesData, setSeriesData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -26,7 +26,7 @@ const Category = ({ title }) => {
  
   return (
     <div className="category-main">
-      <h1 className="title">{title}</h1>
+      <h1 className="title">{titleToShow}</h1>
       {loading ? (
         <div className="loader">
         <CircularProgress color="primary" />

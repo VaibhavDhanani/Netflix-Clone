@@ -15,7 +15,8 @@ import Cancelpayment from "./components/SignUp/cancel-payment";
 import SignupPage from "./components/SignUp/signup-page";
 import { Provider } from "react-redux";
 import UserList from "./pages/userList";
-
+import TvShow from "./pages/tv-show";
+import Movies from "./pages/movies-page";
 function App() {
   return (
       <BrowserRouter>
@@ -33,6 +34,8 @@ function App() {
             <Route path="/video-player" element={<VideoPlayer />} />
             <Route path="/category/:title" element={<Categorypage />} />
             <Route path="/cancel" element={<Cancelpayment />} />
+            <Route path="/tv-shows" element={<TvShow />} />
+            <Route  path="/movies" element={<Movies/>} />
           </Routes>
         </div>
       </BrowserRouter>

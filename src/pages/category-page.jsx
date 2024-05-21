@@ -10,7 +10,7 @@ const CategoryPage = () => {
   return (
     <div>
       <Header />
-      <Category title={title} />
+      <Category title={title} titleToShow={title} />
       <Bigfooter/>
     </div>
   );
