@@ -16,29 +16,36 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../redux/User/user";
 import { Navigate } from "react-router-dom";
+import UserProfileCard from "./profilecard";
+import Overview from "./overview";
 
 function Profile() {
   const [user, setUser] = useState({});
   const [selectedOption, setSelectedOption] = useState("overview");
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getUser = async () => {
+    const fetchUser = async () => {
       try {
-        const userfetch = localStorage.getItem('user')
+        const userfetch = localStorage.getItem("user");
         if (userfetch) {
-          const user = JSON.parse(userfetch);
-          dispatch(setCurrentUser(user));
-          console.log(user)
-          setUser(user);
+          const userlocal = JSON.parse(userfetch);
+          console.log(userlocal.email)
+          const params = new URLSearchParams({ email: userlocal.email });
+          const response = await fetch(`http://localhost:5000/api/user?${params}`);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          setUser(data);
+          return data;
         }
       } catch (error) {
-        console.error('Error fetching user:', error);
+        console.error("Failed to fetch user:", error);
       }
     };
 
-    getUser();
-  }, [dispatch]);
+    fetchUser();
+  }, []);
 
 
   const handleOptionClick = (option) => {
@@ -84,13 +91,11 @@ function Profile() {
           </div>
         );
       case "overview":
-        return <div>Content for Overview</div>;
-      case "devices":
-        return <div>Content for Devices</div>;
+        return <Overview />;
       case "profiles":
-        return <div>Content for Profiles</div>;
+        return <UserProfileCard user={user} />;
       default:
-        return <div>Select an option from the sidebar</div>;
+        return;
     }
   };
 
@@ -113,16 +118,6 @@ function Profile() {
             <li>
               <button onClick={() => handleOptionClick("membership")} className="sidebarop">
                 <AddCardIcon /><span>Membership</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleOptionClick("security")} className="sidebarop">
-                <GppGoodIcon /><span>Security</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleOptionClick("devices")} className="sidebarop">
-                <DevicesIcon /><span>Devices</span>
               </button>
             </li>
             <li>

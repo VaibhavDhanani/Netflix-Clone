@@ -20,8 +20,9 @@ function Card(props) {
     try {
       const userfetch = localStorage.getItem("user");
       if (userfetch) {
-        const user = JSON.parse(userfetch);
-        const params = new URLSearchParams({ email: user.email });
+        const userlocal = JSON.parse(userfetch);
+        console.log(userlocal.email)
+        const params = new URLSearchParams({ email: userlocal.email });
         const response = await fetch(`http://localhost:5000/api/user?${params}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -39,24 +40,24 @@ function Card(props) {
     fetchUser();
   });
 
-  const updateUser = async (user) => {
-    try {
-      const response = await fetch("http://localhost:5000/api/updateuser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      setUser(user);
-      if (!response.ok) {
-        throw new Error("Failed to send user information to the server.");
-      }
-      console.log("User information sent successfully.");
-    } catch (error) {
-      console.error("Error sending user information to server:", error.message);
-    }
-  };
+  // const updateUser = async (user) => {
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/updateuser", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(user),
+  //     });
+  //     setUser(user);
+  //     if (!response.ok) {
+  //       throw new Error("Failed to send user information to the server.");
+  //     }
+  //     console.log("User information sent successfully.");
+  //   } catch (error) {
+  //     console.error("Error sending user information to server:", error.message);
+  //   }
+  // };
 
   const toggle = () => {
     setIsClicked((prevIsClicked) => !prevIsClicked);
@@ -95,6 +96,7 @@ function Card(props) {
     }
   };
 
+  // console.log(user)
 
   return (
     <div className="imageContainer"

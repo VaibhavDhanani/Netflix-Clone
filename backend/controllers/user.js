@@ -59,3 +59,24 @@ exports.getCurrentUser = async (req, res) => {
     res.status(500).json({ error: 'Failed to get users.' });
   }
 };
+
+exports.updateRole = async (req, res) => {
+  const { user } = req.body;
+
+  try {
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      user._id,
+      { role: 'seller' },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({ message: 'User role updated successfully', user: updatedUser });
+  } catch (error) {
+    console.error('Error updating user role:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

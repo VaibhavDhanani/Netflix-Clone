@@ -8,6 +8,7 @@ const stripe = require("stripe")(
 );
 const userController = require("./controllers/user");
 const mainContentController = require("./controllers/maincontent");
+const sellerController = require("./controllers/seller");
 
 app.use(cors());
 app.use(express.json());
@@ -20,12 +21,21 @@ app.get("/api/user", userController.getCurrentUser);
 app.post("/api/user", userController.createUser);
 app.post("/api/updateuserlist", userController.updateUserList);
 
+app.post("/api/updateuserrole", userController.updateRole)
+
 app.get("/api/getcontent", mainContentController.getContent);
 app.get("/api/getuserlist", mainContentController.getUserList);
 app.get("/api/getmaincontent", mainContentController.getMainContent);
 app.post("/api/maincontentupload", mainContentController.uploadMainContent);
 // app.post("/api/updatecontent", mainContentController.updateContent);
 app.get("/api/maincontent/:title", mainContentController.getcategory);
+
+app.get("/api/checkseller",sellerController.checkSeller);
+
+app.post("/api/createseller",sellerController.createSeller)
+
+
+
 app.post("/api/payment", async (req, res) => {
   const user = req.body;
   console.log("i got the data");

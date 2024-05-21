@@ -10,6 +10,7 @@ const SignUp = ({ successPayment }) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
+    role: "client",
     password: "",
     confirmPassword: ""
   });

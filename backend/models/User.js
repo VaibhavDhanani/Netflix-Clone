@@ -4,6 +4,7 @@ const MainContentModel = require("./MainContent");
 const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
+  role: String,
   phone: Number,
   city: String,
   plan: String,
