@@ -5,19 +5,32 @@ const SubSection = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const filterByPlan = async () => {
       try {
-        const result = await fetch('http://localhost:5000/api/getmaincontent');
-        const jsonData = await result.json();
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || !user.plan) {
+          throw new Error("User plan not found in localStorage");
+        }
+
+        const params = new URLSearchParams({ plan: user.plan });
+        const response = await fetch(`http://localhost:5000/api/getcontentbyplan?${params}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching data: ${response.statusText}`);
+        }
+
+        const jsonData = await response.json();
+        console.log(jsonData);
         setData(jsonData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-    fetchData();
+    filterByPlan();
   }, []);
+
   console.log(data);
+  
   return (
     <div>
       {data.map(dataItem => (

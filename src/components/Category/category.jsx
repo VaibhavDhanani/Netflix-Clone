@@ -9,8 +9,10 @@ const Category = ({ title ,titleToShow }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      let plan = JSON.parse(localStorage.getItem('user')).plan;
+      const params = new URLSearchParams({ plan });
       try {
-        const response = await fetch(`/api/maincontent/${title}`);
+        const response = await fetch(`/api/maincontent/${title}?${params}`);
         const data = await response.json();
         // console.log(data);
         setSeriesData(data);

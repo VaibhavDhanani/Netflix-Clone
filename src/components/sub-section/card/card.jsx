@@ -21,7 +21,7 @@ function Card(props) {
       const userfetch = localStorage.getItem("user");
       if (userfetch) {
         const userlocal = JSON.parse(userfetch);
-        console.log(userlocal.email)
+        // console.log(userlocal.plan)
         const params = new URLSearchParams({ email: userlocal.email });
         const response = await fetch(`http://localhost:5000/api/user?${params}`);
         if (!response.ok) {

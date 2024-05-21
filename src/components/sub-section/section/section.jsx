@@ -1,12 +1,15 @@
 import React from 'react'
 import Card from '../card/card'
 import "./section.css"
+
 const Section = (props) => {
   // console.dir(props.data)
 
   const { title, subContent } = { ...props.data };
   const id = props.data._id
 
+  
+  // console.log(subContent)
   const linkurl = `category/${title}`;
   return (
     <div className='flex flex-col'>

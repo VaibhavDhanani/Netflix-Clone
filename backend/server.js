@@ -21,7 +21,7 @@ app.get("/api/user", userController.getCurrentUser);
 app.post("/api/user", userController.createUser);
 app.post("/api/updateuserlist", userController.updateUserList);
 
-app.post("/api/updateuserrole", userController.updateRole)
+app.post("/api/updateuserrole", userController.updateRole);
 
 app.get("/api/getcontent", mainContentController.getContent);
 app.get("/api/getuserlist", mainContentController.getUserList);
@@ -30,11 +30,10 @@ app.post("/api/maincontentupload", mainContentController.uploadMainContent);
 // app.post("/api/updatecontent", mainContentController.updateContent);
 app.get("/api/maincontent/:title", mainContentController.getcategory);
 
-app.get("/api/checkseller",sellerController.checkSeller);
+app.get("/api/checkseller", sellerController.checkSeller);
 
-app.post("/api/createseller",sellerController.createSeller)
-
-
+app.post("/api/createseller", sellerController.createSeller);
+app.get("/api/getcontentbyplan", mainContentController.getContentByPlan);
 
 app.post("/api/payment", async (req, res) => {
   const user = req.body;

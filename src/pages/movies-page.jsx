@@ -6,15 +6,15 @@ import Header from "../components/header/Header";
 import Category from '../components/Category/category';
 import Bigfooter from "../components/footer/Bigfooter";
 import "./tv-show.css";
-const title="Hollywood"
+const title = "Hollywood"
 const titleToShow = "Movies"
-const Movies=()=>{
-return (<div>
-    <Header/>
-    <MainView/>
-    <Category title={title} titleToShow={titleToShow}/>
-      <Bigfooter/>
-</div>)
+const Movies = () => {
+  return (<div>
+    <Header />
+    <MainView />
+    <Category title={title} titleToShow={titleToShow} />
+    <Bigfooter />
+  </div>)
 }
 
 

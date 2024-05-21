@@ -1,6 +1,53 @@
 const MainContentModel = require("../models/MainContent");
 
-// console.log(MainContentModel);
+exports.getContentByPlan = async (req, res) => {
+  const { plan } = req.query;
+
+  if (!plan) {
+    return res.status(400).json({ error: "Plan query parameter is required." });
+  }
+
+  try {
+    const mainContent = await MainContentModel.find({});
+
+    let plansToInclude;
+    switch (plan) {
+      case "premium":
+        plansToInclude = ["basic", "special", "pro", "premium"];
+        break;
+      case "pro":
+        plansToInclude = ["basic", "special", "pro"];
+        break;
+      case "special":
+        plansToInclude = ["basic", "special"];
+        break;
+      case "basic":
+        plansToInclude = ["basic"];
+        break;
+      default:
+        return res.status(400).json({ error: "Invalid plan specified." });
+    }
+
+    const filteredContent = mainContent.map((content) => {
+      return {
+        ...content._doc,
+        subContent: content.subContent.filter((item) =>
+          plansToInclude.includes(item.plan)
+        ),
+      };
+    });
+
+    const result = filteredContent.filter(
+      (content) => content.subContent.length > 0
+    );
+
+    console.log(result);
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to get main content." });
+  }
+};
 
 exports.getMainContent = async (req, res) => {
   try {
@@ -12,7 +59,6 @@ exports.getMainContent = async (req, res) => {
     res.status(500).json({ error: "Failed to get main content." });
   }
 };
-
 exports.getContent = async (req, res) => {
   try {
     const mainContent = await MainContentModel.findOne({
@@ -32,22 +78,64 @@ exports.getContent = async (req, res) => {
 exports.getcategory = async (req, res) => {
   try {
     const { title } = req.params;
+    const { plan } = req.query;
+
+    if (!plan) {
+      return res
+        .status(400)
+        .json({ error: "Plan query parameter is required." });
+    }
+
     const mainContent = await MainContentModel.findOne({ title });
-    res.json(mainContent);
+
+    if (!mainContent) {
+      return res.status(404).json({ error: "Main content not found." });
+    }
+
+    let plansToInclude;
+    switch (plan) {
+      case "premium":
+        plansToInclude = ["basic", "special", "pro", "premium"];
+        break;
+      case "pro":
+        plansToInclude = ["basic", "special", "pro"];
+        break;
+      case "special":
+        plansToInclude = ["basic", "special"];
+        break;
+      case "basic":
+        plansToInclude = ["basic"];
+        break;
+      default:
+        return res.status(400).json({ error: "Invalid plan specified." });
+    }
+
+    const filteredSubContent = mainContent.subContent.filter((item) =>
+      plansToInclude.includes(item.plan)
+    );
+
+    const result = {
+      ...mainContent._doc,
+      subContent: filteredSubContent,
+    };
+
+    console.log(result);
+    res.json(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to get main content." });
   }
 };
 
-
 exports.getUserList = async (req, res) => {
   try {
     const list = req.query.list.split(",");
     const result = [];
-    const docs = await MainContentModel.find({ 'subContent.name': { $in: list } });
-    docs.forEach(doc => {
-      doc.subContent.forEach(sub => {
+    const docs = await MainContentModel.find({
+      "subContent.name": { $in: list },
+    });
+    docs.forEach((doc) => {
+      doc.subContent.forEach((sub) => {
         if (list.includes(sub.name)) {
           result.push(sub);
         }
@@ -59,7 +147,6 @@ exports.getUserList = async (req, res) => {
     res.status(500).json({ error: "Failed to get main content." });
   }
 };
-
 
 exports.uploadMainContent = async (req, res) => {
   const movieData = req.body;
@@ -128,6 +215,3 @@ exports.uploadMainContent = async (req, res) => {
       res.status(500).json({ error: "Failed to find movie data." });
     });
 };
-
-
-
