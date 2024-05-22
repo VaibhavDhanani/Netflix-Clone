@@ -17,6 +17,7 @@ import { Provider } from "react-redux";
 import UserList from "./pages/userList";
 import TvShow from "./pages/tv-show";
 import Movies from "./pages/movies-page";
+import Newpopular from "./pages/new-popular";
 function App() {
   return (
       <BrowserRouter>
@@ -36,6 +37,8 @@ function App() {
             <Route path="/cancel" element={<Cancelpayment />} />
             <Route path="/tv-shows" element={<TvShow />} />
             <Route  path="/movies" element={<Movies/>} />
+            <Route  path="/newpopular" element={<Newpopular/>} />
+         
           </Routes>
         </div>
       </BrowserRouter>
