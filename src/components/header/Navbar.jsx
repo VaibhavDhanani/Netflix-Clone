@@ -64,9 +64,9 @@ const Navbar = () => {
                                 <Link to="/" className="px-2 py-2 mx-1 mt-2 text-gray-100 hover:bg-gray-600 rounded-md lg:mt-0">Home</Link>
                                 <Link to="/tv-shows" className="px-2 py-2 mx-1 mt-2 text-gray-100 hover:bg-gray-600 rounded-md lg:mt-0">TV-Shows</Link>
                                 <Link to="/movies" className="px-2 py-2 mx-1 mt-2 text-gray-100 hover:bg-gray-600 rounded-md lg:mt-0">Movies</Link>
-                                <Link to="/new-popular" className="px-2 py-2 mx-1 mt-2 text-gray-100 hover:bg-gray-600 rounded-md lg:mt-0">New & Popular</Link>
+                                <Link to="/newpopular" className="px-2 py-2 mx-1 mt-2 text-gray-100 hover:bg-gray-600 rounded-md lg:mt-0">New & Popular</Link>
                                 <Link to="/my-list" className="px-2 py-2 mx-1 mt-2 text-gray-100 hover:bg-gray-600 rounded-md lg:mt-0">My List</Link>
-                                <Link to="/browse-language" className="px-2 py-2 mx-1 mt-2 text-gray-100 hover:bg-gray-600 rounded-md lg:mt-0">Browse by Language</Link>
+              
                             </div>
                             <div className={`lg:hidden my-2  ${isOpen ? '' : 'flex-col'}`}>
                                 <div className="rounded">

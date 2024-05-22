@@ -215,3 +215,44 @@ exports.uploadMainContent = async (req, res) => {
       res.status(500).json({ error: "Failed to find movie data." });
     });
 };
+
+
+
+
+exports.getallmovies = async (req, res) => {
+  try {
+    const mainContent = await MainContentModel.find({});
+    let allSubContent = [];
+    mainContent.forEach(content => {
+      allSubContent = allSubContent.concat(content.subContent.filter(sub => sub.seasons === null));
+    });
+    res.json(allSubContent);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to get subcontent with season not null." });
+  }
+};
+
+
+exports.getNewPopularSubContent = async (req, res) => {
+  try {
+    const mainContent = await MainContentModel.find({});
+    let allSubContent = [];
+    const currentDate = new Date();
+    const oneYearAgo = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
+
+    mainContent.forEach(content => {
+      content.subContent.forEach(sub => {
+        if ((new Date(sub.releaseDate) >= oneYearAgo) &&  (sub.ratings > 5.0)) {
+          allSubContent.push(sub);
+        }
+      });
+    });
+
+    res.json(allSubContent);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to get new popular subcontent." });
+  }
+};
+

@@ -12,7 +12,7 @@ const sellerController = require("./controllers/seller");
 
 app.use(cors());
 app.use(express.json());
-mongoose.connect(
+ mongoose.connect(
   "mongodb+srv://22ceueg136:UzhIFg3PW36BWL4B@flixify.x0uihnz.mongodb.net/?retryWrites=true&w=majority&appName=Flixify"
 );
 
@@ -34,6 +34,9 @@ app.get("/api/checkseller", sellerController.checkSeller);
 
 app.post("/api/createseller", sellerController.createSeller);
 app.get("/api/getcontentbyplan", mainContentController.getContentByPlan);
+
+app.get("/api/getallmovies", mainContentController.getallmovies);
+app.get("/api/getnewpopular", mainContentController.getNewPopularSubContent);
 
 app.post("/api/payment", async (req, res) => {
   const user = req.body;
