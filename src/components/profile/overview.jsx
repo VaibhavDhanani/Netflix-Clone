@@ -79,6 +79,15 @@ const Overview = () => {
         });
     };
 
+    const formatDate = (isoDate) => {
+        const date = new Date(isoDate);
+        return date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+      };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -223,7 +232,7 @@ const Overview = () => {
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2">Establish Date</td>
-                                    <td className="border px-4 py-2">{formData.establishDate}</td>
+                                    <td className="border px-4 py-2">{formatDate(formData.establishDate)}</td>
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2">Contact Number</td>

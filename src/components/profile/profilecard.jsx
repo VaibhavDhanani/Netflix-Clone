@@ -1,6 +1,7 @@
 import React from 'react';
 
 const UserProfileCard = ({ user }) => {
+
   return (
     <div className="flex items-start justify-center">
       <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs">
@@ -12,9 +13,6 @@ const UserProfileCard = ({ user }) => {
         <h1 className="text-base text-black">{user.name}</h1>
         <h3 className="text-base">{user.role}</h3>
         <p className="text-base">{user.email}</p>
-        <button className="bg-indigo-600 px-8 py-2 mt-8 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide">
-          Change Details
-        </button>
       </div>
     </div>
   );

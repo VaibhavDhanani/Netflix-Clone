@@ -21,29 +21,33 @@ import Overview from "./overview";
 
 function Profile() {
   const [user, setUser] = useState({});
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState("overview");
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userfetch = localStorage.getItem("user");
-        if (userfetch) {
-          const userlocal = JSON.parse(userfetch);
-          console.log(userlocal.email)
-          const params = new URLSearchParams({ email: userlocal.email });
-          const response = await fetch(`http://localhost:5000/api/user?${params}`);
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          const data = await response.json();
-          setUser(data);
-          return data;
+  const fetchUser = async () => {
+    try {
+      const userfetch = localStorage.getItem("user");
+      if (userfetch) {
+        const userlocal = JSON.parse(userfetch);
+        console.log(userlocal.email)
+        const params = new URLSearchParams({ email: userlocal.email });
+        const response = await fetch(`http://localhost:5000/api/user?${params}`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      } catch (error) {
-        console.error("Failed to fetch user:", error);
+        const data = await response.json();
+        setUser(data);
+        return data;
       }
-    };
-
+    } catch (error) {
+      console.error("Failed to fetch user:", error);
+    }
+  };
+  useEffect(() => {
     fetchUser();
   }, []);
 
@@ -61,6 +65,110 @@ function Profile() {
     });
   };
 
+  const togglePasswordModal = () => {
+    setShowPasswordModal(!showPasswordModal);
+    setPasswordError('');
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+  };
+
+  const handlePasswordSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const currentPasswordValue = formData.get('currentPassword');
+    const newPasswordValue = formData.get('newPassword');
+    const confirmPasswordValue = formData.get('confirmPassword');
+
+    if (newPasswordValue !== confirmPasswordValue) {
+      setPasswordError('New password and confirm password do not match');
+      return;
+    }
+
+    if (currentPasswordValue === user.password) {
+      if (newPasswordValue === confirmPasswordValue) {
+
+        try {
+          const response = await fetch(`http://localhost:5000/api/updateuserpassword`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ...user, password: newPasswordValue }),
+          });
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          setUser(data);
+          togglePasswordModal();
+        } catch (error) {
+          console.error("Failed to update password:", error);
+          setPasswordError('Failed to update password. Please try again.');
+        }
+      }
+      else {
+        setPasswordError('New password and confirm password do not match');
+      }
+    } else {
+      setPasswordError('Current password is incorrect');
+    }
+  };
+
+  const PasswordModal = () => {
+    return (
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ${showPasswordModal ? 'block' : 'hidden'}`}
+      >
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+          <span
+            className="close text-gray-600 hover:text-gray-900 cursor-pointer text-2xl"
+            onClick={togglePasswordModal}
+          >
+            &times;
+          </span>
+          <h2 className="text-xl font-semibold mb-4">Update Password</h2>
+          {passwordError && <p className="text-red-500 mb-4">{passwordError}</p>}
+          <form onSubmit={handlePasswordSubmit}>
+            <div className="mb-4">
+              <input
+                type="password"
+                placeholder="Current Password"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                name="currentPassword"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="password"
+                placeholder="New Password"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                name="newPassword"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="password"
+                placeholder="Confirm New Password"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                name="confirmPassword"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+            >
+              Update Password
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  };
+
   const renderContent = () => {
     switch (selectedOption) {
       case "back_to_netflix":
@@ -71,9 +179,9 @@ function Profile() {
         return (
           <div>
             <div className="title">
-              <h1>Account</h1>
+              <h1 className="text-black text-5xl">Account</h1>
             </div>
-            <h2>Membership details</h2>
+            <h2 className="text-2xl">Membership details</h2>
             <div className="plan">
               <h2>Plan name:  {user.plan}</h2>
               <h2>Plan date : {formatDate(user.date)}</h2>
@@ -84,10 +192,10 @@ function Profile() {
             <div className="ql">
               <h2>Quick Links</h2>
               <ul>
-                <li><PasswordIcon /><span>Update Password</span></li>
-                <li><SettingsIcon /><span>Edit Settings</span></li>
+                <li><PasswordIcon /><button onClick={togglePasswordModal}>Update Password</button></li>
               </ul>
             </div>
+            <PasswordModal />
           </div>
         );
       case "overview":
@@ -99,7 +207,6 @@ function Profile() {
     }
   };
 
-
   return (
     <div className="Profile">
       <div className="profile-main">
@@ -107,7 +214,7 @@ function Profile() {
           <ul>
             <li>
               <button onClick={() => handleOptionClick("back_to_netflix")} className="backbutton">
-                <KeyboardBackspaceIcon />Back to Netflix
+                <KeyboardBackspaceIcon />
               </button>
             </li>
             <li>

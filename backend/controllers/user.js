@@ -80,3 +80,24 @@ exports.updateRole = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+exports.updateUser = async (req, res) => {
+  const  user  = req.body;
+
+  try {
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      user._id,
+      { password:  user.password },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({ message: 'User password updated successfully', user: updatedUser });
+  } catch (error) {
+    console.error('Error updating user password:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

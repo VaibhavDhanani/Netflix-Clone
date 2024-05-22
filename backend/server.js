@@ -20,7 +20,7 @@ app.get("/api/getusers", userController.getAllUsers);
 app.get("/api/user", userController.getCurrentUser);
 app.post("/api/user", userController.createUser);
 app.post("/api/updateuserlist", userController.updateUserList);
-
+app.post("/api/updateuserpassword", userController.updateUser);
 app.post("/api/updateuserrole", userController.updateRole);
 
 app.get("/api/getcontent", mainContentController.getContent);
