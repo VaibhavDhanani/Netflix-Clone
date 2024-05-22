@@ -172,7 +172,7 @@ function Profile() {
   const renderContent = () => {
     switch (selectedOption) {
       case "back_to_netflix":
-        return <Navigate to="/" replace />;
+        return <Navigate to="/home" replace />;
       case "security":
         return <div>Content for Security</div>;
       case "membership":

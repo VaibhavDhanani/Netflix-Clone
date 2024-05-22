@@ -16,7 +16,7 @@ const SignUp = ({ successPayment }) => {
   });
 
   const [additionalInfo, setAdditionalInfo] = useState({
-    plan: "",
+    plan: "basic",
     city: "",
     address: "",
     mobile: "",
@@ -169,7 +169,7 @@ const SignUp = ({ successPayment }) => {
                 <input type="password" id="password" name="password" value={user.password} className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-2 focus:ring-indigo-800 focus:border-indigo-800" onChange={handleChange} placeholder="password" required />
                 <label htmlFor="confirmPassword" autoComplete="off" className="mt-2 block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Confirm Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" value={user.confirmPassword} className="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-2 focus:ring-indigo-800 focus:border-indigo-800" onChange={handleChange} placeholder="Confirm password" required />
-                <a href="#" className="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Forgot Password?</a>
+                <a href="/" className="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Already Have Account</a>
               </div>
               {!showAdditionalForm && (
                 <div className="flex justify-between">

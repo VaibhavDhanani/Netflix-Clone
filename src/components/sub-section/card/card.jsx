@@ -138,7 +138,7 @@ function Card(props) {
                 )}
                 <div className="hashtags">
                   <p>Likes: {totalLikes}</p>
-                  <p>{ratings} / 5.0</p>
+                  <p>{ratings} / 10.0</p>
                 </div>
                 {seasons && isClicked && (
                   <div className="text-base text-black bg-transparent">

@@ -14,14 +14,14 @@ const SeasonUpload = (props) => {
 
   const addSeason = (e) => {
     e.preventDefault();
-    setSeasons([...seasons, { seasonNumber: seasons.length, episodes: [] }]);
+    setSeasons([...seasons, { seasonNumber: seasons.length+1, episodes: [] }]);
   };
 
-  const addEpisode = (e,seasonIndex) => {
+  const addEpisode = (e, seasonIndex) => {
     e.preventDefault();
     const newSeasons = [...seasons];
     newSeasons[seasonIndex].episodes.push({
-      episodeNumber: newSeasons[seasonIndex].episodes.length,
+      episodeNumber: newSeasons[seasonIndex].episodes.length+1,
       videoUrl: "",
       video: null,
       description: "",
@@ -96,7 +96,7 @@ const SeasonUpload = (props) => {
       body: JSON.stringify(postData),
     }).then((response) => {
       if (!response.ok) {
-        console.log(response)
+        console.log(response);
         throw new Error("Network response was not ok");
       }
       setSeasons([
@@ -112,83 +112,85 @@ const SeasonUpload = (props) => {
   };
 
   return (
-    <div>
+    <div className="space-y-6 text-white">
       {seasons.map((season, seasonIndex) => (
-        <div key={seasonIndex}>
-          <h3>
-            Season
+        <div key={seasonIndex} className="dark:bg-gray-800 shadow-md rounded-lg p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">Season</h3>
             <input
               type="number"
               value={season.seasonNumber}
-              className="text-black px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+              className="text-black px-2 py-1 rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
               onChange={(event) => handleSeasonChange(seasonIndex, event)}
             />
-          </h3>
+          </div>
           <button
-            onClick={(e) => addEpisode(e,seasonIndex)}
-            className="w-full mt-5 py-2 px-4 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-blue-600"
+            onClick={(e) => addEpisode(e, seasonIndex)}
+            className="w-full mt-2 py-2 px-4 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-blue-600"
           >
             Add Episode
           </button>
-          {season.episodes.map((episode, episodeIndex) => (
-            <div key={episodeIndex}>
-              <h4>
-                Episode{" "}
+          <div className="mt-4 space-y-4">
+            {season.episodes.map((episode, episodeIndex) => (
+              <div key={episodeIndex} className="dark:bg-gray-600 p-4 rounded-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-sm font-semibold">Episode</h4>
+                  <input
+                    type="number"
+                    className="text-black px-2 py-1 rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                    value={episode.episodeNumber }
+                    onChange={(event) =>
+                      handleEpisodeChange(
+                        seasonIndex,
+                        episodeIndex,
+                        "episodeNumber",
+                        event
+                      )
+                    }
+                  />
+                </div>
+                <label className="block text-left mb-2 text-dark">Video:</label>
+                <div className="flex items-center mb-2">
+                  <input
+                    type="file"
+                    id="video"
+                    name="video"
+                    className="px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                    onChange={(e) =>
+                      handleVideoChange(seasonIndex, episodeIndex, e)
+                    }
+                  />
+                </div>
                 <input
-                  type="number"
+                  type="text"
+                  placeholder="Video URL"
                   className="text-black px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                  value={episode.episodeNumber}
+                  value={episode.videoUrl}
                   onChange={(event) =>
                     handleEpisodeChange(
                       seasonIndex,
                       episodeIndex,
-                      "episodeNumber",
+                      "videoUrl",
                       event
                     )
                   }
                 />
-              </h4>
-              <label className="block text-left mb-2 text-dark">Video:</label>
-              <div className="flex items-center mb-2">
-                <input
-                  type="file"
-                  id="video"
-                  name="video"
-                  className=" px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                  onChange={(e) =>
-                    handleVideoChange(seasonIndex, episodeIndex, e)
+                <textarea
+                  placeholder="Description"
+                  className="text-black my-2 px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                  value={episode.description}
+                  onChange={(event) =>
+                    handleEpisodeChange(
+                      seasonIndex,
+                      episodeIndex,
+                      "description",
+                      event
+                    )
                   }
                 />
               </div>
-              <input
-                type="text"
-                placeholder="Video URL"
-                className="text-black px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                value={episode.videoUrl}
-                onChange={(event) =>
-                  handleEpisodeChange(
-                    seasonIndex,
-                    episodeIndex,
-                    "videoUrl",
-                    event
-                  )
-                }
-              />
-              <textarea
-                placeholder="Description"
-                className="text-black my-4 px-2 block w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                value={episode.description}
-                onChange={(event) =>
-                  handleEpisodeChange(
-                    seasonIndex,
-                    episodeIndex,
-                    "description",
-                    event
-                  )
-                }
-              />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       ))}
       <button

@@ -84,7 +84,7 @@ const MovieUpload = (props) => {
 
   return (
     <div>
-      <label className="block mb-2 text-dark">Video:</label>
+      <label className="block mb-2 text-cyan-800 font-bold">Video:</label>
       <div className="flex items-center mb-2">
         <input
           type="file"
