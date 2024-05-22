@@ -19,7 +19,7 @@ const SignIn = () => {
             if (user) {
                 localStorage.setItem("user", JSON.stringify(user));
                 dispatch(setCurrentUser(user));
-                window.location.href = "/";
+                window.location.href = "/home";
             } else {
                 setError("Invalid email or password.");
             }

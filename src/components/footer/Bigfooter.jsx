@@ -1,41 +1,54 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Bigfooter = () => {
   return (
-    <footer className="bg-dark text-white py-8 mt-35 pt-20">
-      <div className="container mx-auto">
+    <footer className="bg-dark text-white py-8 pt-20 flex">
+      <div className="mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h5 className="text-lg font-bold mb-4">About Us</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit.</p>
+            <p>Netflix Clone made by us using MERN Stack</p>
+            <div className="flex justify-center items-center space-x-4">
+              <a
+                href="https://www.linkedin.com/in/vaibhav-dhanani-01bb46256/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
+              >
+                Vaibhav Dhanani
+              </a>
+              <a
+                href="https://www.linkedin.com/in/yash-gabani-527886258/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
+              >
+                Yash Gabani
+              </a>
+            </div>
           </div>
           <div>
-            <h5 className="text-lg font-bold mb-4">Useful Links</h5>
-            <ul className="list-none">
-              <li><a href="#" className="hover:text-gray-300">Home</a></li>
-              <li><a href="#" className="hover:text-gray-300">About Us</a></li>
-              <li><a href="#" className="hover:text-gray-300">Services</a></li>
-              <li><a href="#" className="hover:text-gray-300">Contact</a></li>
-            </ul>
           </div>
           <div>
             <h5 className="text-lg font-bold mb-4">Contact Us</h5>
             <address className="not-italic">
-              <strong>Your Company</strong><br />
-              1234 Street Name, City Name<br />
-              State, Country<br />
-              <abbr title="Phone">P:</abbr> (123) 456-7890
+              <strong>Flixify</strong><br />
+              Surat<br />
+              Gujrat, India<br />
+              <abbr title="Phone">P :</abbr> (+91) 78619 79302 <br/>
+              <abbr title="Phone">P :</abbr> (+91) 70469 96816
             </address>
           </div>
         </div>
         <hr className="my-8 border-gray-700" />
         <div className="text-center">
           <ul className="list-none inline-block">
-            <li className="inline-block mr-4"><a href="#" className="hover:text-gray-300">Privacy Policy</a></li>
-            <li className="inline-block mr-4"><a href="#" className="hover:text-gray-300">Terms of Use</a></li>
-            <li className="inline-block mr-4"><a href="#" className="hover:text-gray-300">Sitemap</a></li>
+            <li className="inline-block mr-4"><a href="" className="hover:text-gray-300">Privacy Policy</a></li>
+            <li className="inline-block mr-4"><a href="" className="hover:text-gray-300">Terms of Use</a></li>
+            <li className="inline-block mr-4"><a href="" className="hover:text-gray-300">Sitemap</a></li>
           </ul>
-          <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Your Website Name. All rights reserved.</p>
+          <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Flixify.com  All rights reserved.</p>
         </div>
       </div>
     </footer>

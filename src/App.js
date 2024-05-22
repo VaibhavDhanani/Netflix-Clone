@@ -23,11 +23,11 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/node" element={<Abc />} />
             <Route path="/my-list" element={<UserList />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/signin" element={<SignIn />} />
+            <Route path="/" element={<SignIn />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/contentupload" element={<MovieForm />} />
             <Route path="/movieform" element={<MovieUpload />} />

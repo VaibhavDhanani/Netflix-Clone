@@ -53,10 +53,9 @@ let fullname = title;
   return (
     <div className="media-player-container">
       <div className="media-player-title">
-        <a href="/">
+        <a href="/home">
           <div className="back-button-media">
             <KeyboardBackspaceIcon />
-            Back to Netflix
           </div>
         </a>
         <h1>Netflix Media Player</h1>
