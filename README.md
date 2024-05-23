@@ -5,18 +5,18 @@ Welcome to the Netflix Clone project! This project aims to replicate the basic f
 ## Project Structure
 
 ```
-netflix-clone/
+Flixify/
 │
 |
 |── public/
 |── src/
 │   ├── components/
 │   ├── pages/
-│   ├── App.js
-│   ├── index.js
-│   └── ...
-│   ├── package.json
-│   └── ...
+├── App.js
+├── index.js
+└── ...
+├── package.json
+└── ...
 │
 └── backend/
     ├── controllers/
