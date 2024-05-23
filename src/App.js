@@ -31,7 +31,10 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Routes>
-            <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <SignIn />} />
+            <Route
+              path="/"
+              element={isLoggedIn ? <Navigate to="/home" /> : <SignIn />}
+            />
             <Route
               path="/signup"
               element={isLoggedIn ? <Navigate to="/home" /> : <SignupPage />}
@@ -42,32 +45,23 @@ function App() {
             />
             <Route
               path="/my-list"
-              element={isLoggedIn ? <UserList /> : <Navigate to="/" />}
+              element={<UserList />}
             />
             <Route
               path="/profile"
-              element={isLoggedIn ? <Profile /> : <Navigate to="/" />}
+              element={<Profile />}
             />
-            <Route
-              path="/contentupload"
-              element={isLoggedIn ? <MovieForm /> : <Navigate to="/" />}
-            />
+            <Route path="/contentupload" element={<MovieForm />} />
             <Route
               path="/movieform"
               element={isLoggedIn ? <MovieUpload /> : <Navigate to="/" />}
             />
-            <Route
-              path="/seasonform"
-              element={isLoggedIn ? <SeasonUpload /> : <Navigate to="/" />}
-            />
+            <Route path="/seasonform" element={<SeasonUpload />} />
             <Route
               path="/video-player"
-              element={isLoggedIn ? <VideoPlayer /> : <Navigate to="/" />}
+              element={<VideoPlayer />}
             />
-            <Route
-              path="/category/:title"
-              element={isLoggedIn ? <Categorypage /> : <Navigate to="/" />}
-            />
+            <Route path="/category/:title" element={<Categorypage />} />
             <Route
               path="/cancel"
               element={isLoggedIn ? <Cancelpayment /> : <Navigate to="/" />}

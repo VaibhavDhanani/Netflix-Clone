@@ -53,7 +53,7 @@ const UserList = () => {
 
 	const handleRemove = async (name) => {
 		const newList = user.mylist.filter(item => item !== name);
-		console.log(newList);
+		// console.log(newList);
 		const userDataToSend = { ...user, mylist: newList };
 		try {
 			const response = await fetch("http://localhost:5000/api/updateuserlist", {
