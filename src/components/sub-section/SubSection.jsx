@@ -29,7 +29,7 @@ const SubSection = () => {
     filterByPlan();
   }, []);
 
-  console.log(data);
+  // console.log(data);
   
   return (
     <div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../../supabase/supabaseClient';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../redux/User/user';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +25,7 @@ const Navbar = () => {
                 if (userfetch) {
                     const user = JSON.parse(userfetch);
                     dispatch(setCurrentUser(user));
-                    console.log(user)
+                    // console.log(user)
                     setUser(user);
                 }
             } catch (error) {

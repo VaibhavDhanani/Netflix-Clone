@@ -4,7 +4,7 @@ import "firebase/compat/storage";
 
 const MovieUpload = (props) => {
   const [additionalData, setAdditionalData] = useState({
-    videoUrl: "",
+    videoUrl: null,
     video: null,
     seasons: null,
   });
@@ -84,7 +84,7 @@ const MovieUpload = (props) => {
 
   return (
     <div>
-      <label className="block mb-2 text-cyan-800 font-bold">Video:</label>
+      <label className="block mb-2 text-cyan-300 font-bold">Video:</label>
       <div className="flex items-center mb-2">
         <input
           type="file"
@@ -92,9 +92,10 @@ const MovieUpload = (props) => {
           name="video"
           onChange={handleVideoChange}
           className="mr-2 px-2"
+          required
         />
       </div>
-      <span className="text-sm text-white">or</span>
+      {/* <span className="text-sm text-white">or</span>
       <input
         type="url"
         id="videoUrl"
@@ -103,12 +104,13 @@ const MovieUpload = (props) => {
         value={additionalData.videoUrl}
         placeholder="Enter Video URL"
         className="block text-black w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-      />
+      /> */}
 
       <button
         type="submit"
         onClick={handleSubmit}
-        className="w-full mt-5 py-2 px-4 bg-red-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 hover:bg-red-600"
+        className={`w-full mt-5 py-2 px-4 text-white rounded focus:outline-none focus:ring-2 focus:ring-offset-2  ${additionalData.videoUrl ? 'bg-red-500 hover:bg-red-600 focus:ring-red-500' : 'bg-red-800'} `}
+        disabled= {additionalData.videoUrl ? true : false}
       >
         Submit
       </button>

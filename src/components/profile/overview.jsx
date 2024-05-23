@@ -17,14 +17,14 @@ const Overview = () => {
             const userfetch = localStorage.getItem("user");
             if (userfetch) {
                 const userlocal = JSON.parse(userfetch);
-                console.log(userlocal.email)
+                // console.log(userlocal.email)
                 const params = new URLSearchParams({ email: userlocal.email });
                 const response = await fetch(`http://localhost:5000/api/user?${params}`);
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
                 const data = await response.json();
-                console.log(data._id)
+                // console.log(data._id)
                 setUser(data);
                 return data;
             }
@@ -35,7 +35,7 @@ const Overview = () => {
 
     const checkSeller = async (userId) => {
         try {
-            console.log(userId);
+            // console.log(userId);
             const params = new URLSearchParams({ userId: userId.toString() });
             const response = await fetch(`http://localhost:5000/api/checkseller?${params}`);
             if (!response.ok) {

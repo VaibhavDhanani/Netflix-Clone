@@ -20,7 +20,7 @@ const MainView = () => {
         while (uniqueSlides.length < 3) {
           const randomMainContent = jsonData[Math.floor(Math.random() * jsonData.length)];
           const randomSubContent = randomMainContent.subContent[Math.floor(Math.random() * randomMainContent.subContent.length)];
-        console.log(randomSubContent)
+        // console.log(randomSubContent)
           if (!uniqueSlides.some(slide => slide.title === randomMainContent.title)) {
             uniqueSlides.push({
               imageUrl: randomSubContent.imageUrl,
@@ -50,7 +50,7 @@ const MainView = () => {
   const prevSlide = () => {
     setCurrentSlideIndex((prevIndex) => (prevIndex === 0 ? slideLength - 1 : prevIndex - 1));
   };
-console.log(slides)
+// console.log(slides)
   return (
     <div className="carousel">
       <div className="slide-container">
@@ -75,7 +75,7 @@ console.log(slides)
                to={"/video-player"}
                state={{
                  episodeNumber: 0,
-         seasonNumber: 0, 
+                  seasonNumber: 0, 
                  info: slides[currentSlideIndex]
                
                }}>  

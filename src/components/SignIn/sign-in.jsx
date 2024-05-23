@@ -27,7 +27,6 @@ const SignIn = () => {
             console.error('Error fetching users:', err);
             setError("An error occurred during login. Please try again.");
         }
-
     };
 
     const handleChange = (event) => {
@@ -68,7 +67,6 @@ const SignIn = () => {
                             onChange={handleChange}
                             required
                         />
-                        <a href="#" className="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Forgot Password?</a>
                     </div>
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
