@@ -49,7 +49,7 @@ const UserList = () => {
 			}
 		};
 		fetchData();
-	}, []);
+	});
 
 	const handleRemove = async (name) => {
 		const newList = user.mylist.filter(item => item !== name);
@@ -80,7 +80,7 @@ const UserList = () => {
 	}
 
 
-	console.log(content)
+	// console.log(content)
 	return (
 		<div>
 			<Header />

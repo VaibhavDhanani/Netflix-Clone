@@ -106,7 +106,7 @@ const MovieForm = () => {
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="title" className="block mb-2 text-cyan-800 font-bold">
+            <label htmlFor="title" className="block mb-2 text-cyan-300 font-bold">
               Movie Title:
             </label>
             <select
@@ -126,7 +126,7 @@ const MovieForm = () => {
             </select>
           </div>
           <div className="mb-4">
-            <label htmlFor="name" className="block mb-2 text-cyan-800 font-bold">
+            <label htmlFor="name" className="block mb-2 text-cyan-300 font-bold">
               Name
             </label>
             <input
@@ -140,7 +140,7 @@ const MovieForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="releaseDate" className="block mb-2 text-cyan-800 font-bold">
+            <label htmlFor="releaseDate" className="block mb-2 text-cyan-300 font-bold">
               Release Date:
             </label>
             <input
@@ -154,7 +154,7 @@ const MovieForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="mb-2 text-cyan-800 font-bold">Image:</label>
+            <label className="mb-2 text-cyan-300 font-bold">Image:</label>
             <div className="flex items-center mb-2">
               <input
                 type="file"
@@ -162,10 +162,11 @@ const MovieForm = () => {
                 name="image"
                 onChange={handleImageChange}
                 className="mr-2 px-2"
+                required
               />
             </div>
-            <span className="text-sm text-white">or</span>
-            <input
+            {/* <span className="text-sm text-white">or</span> */}
+            {/* <input
               type="url"
               id="imageUrl"
               name="imageUrl"
@@ -173,11 +174,11 @@ const MovieForm = () => {
               onChange={handleChange}
               placeholder="Enter Image URL"
               className="block text-black w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-            />
+            /> */}
           </div>
 
           <div className="mb-4">
-            <label htmlFor="description" className=" block mb-2 text-cyan-800 font-bold">
+            <label htmlFor="description" className=" block mb-2 text-cyan-300 font-bold">
               Description:
             </label>
             <textarea
@@ -186,14 +187,15 @@ const MovieForm = () => {
               value={formData.description}
               onChange={handleChange}
               className="text-black block px-2 w-full rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="categories" className="block mb-2 text-cyan-800 font-bold">
+            <label htmlFor="categories" className="block mb-2 text-cyan-300 font-bold">
               Category:
             </label>
             <div className="flex flex-wrap">
-              <label className="inline-flex items-center text-cyan-800 font-bold mr-4 mb-2">
+              <label className="inline-flex items-center text-cyan-300 font-bold mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -203,7 +205,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Action</span>
               </label>
-              <label className="inline-flex items-center text-cyan-800 font-bold mr-4 mb-2">
+              <label className="inline-flex items-center text-cyan-300 font-bold mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -213,7 +215,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Comedy</span>
               </label>
-              <label className="inline-flex items-center text-cyan-800 font-bold mr-4 mb-2">
+              <label className="inline-flex items-center text-cyan-300 font-bold mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -223,7 +225,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Drama</span>
               </label>
-              <label className="inline-flex items-center text-cyan-800 font-bold mr-4 mb-2">
+              <label className="inline-flex items-center text-cyan-300 font-bold mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -233,7 +235,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Thriller</span>
               </label>
-              <label className="inline-flex items-center text-cyan-800 font-bold mr-4 mb-2">
+              <label className="inline-flex items-center text-cyan-300 font-bold mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -243,7 +245,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Horror</span>
               </label>
-              <label className="inline-flex items-center text-cyan-800 font-bold mr-4 mb-2">
+              <label className="inline-flex items-center text-cyan-300 font-bold mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -253,7 +255,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Romance</span>
               </label>
-              <label className="inline-flex items-center text-cyan-800 font-bold mr-4 mb-2">
+              <label className="inline-flex items-center text-cyan-300 font-bold mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -263,7 +265,7 @@ const MovieForm = () => {
                 />
                 <span className="ml-2">Sci-Fi</span>
               </label>
-              <label className="inline-flex items-center text-cyan-800 font-bold mr-4 mb-2">
+              <label className="inline-flex items-center text-cyan-300 font-bold mr-4 mb-2">
                 <input
                   type="checkbox"
                   name="categories"
@@ -277,7 +279,7 @@ const MovieForm = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="plan" className="block mb-2 text-cyan-800 font-bold">
+            <label htmlFor="plan" className="block mb-2 text-cyan-300 font-bold">
               Plan Type:
             </label>
             <select
@@ -296,7 +298,7 @@ const MovieForm = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="type" className="block mb-2 text-cyan-800 font-bold">
+            <label htmlFor="type" className="block mb-2 text-cyan-300 font-bold">
               Content Type:
             </label>
             <select

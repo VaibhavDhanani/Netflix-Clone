@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { supabase } from "../../supabase/supabaseClient";
+import React, { useState } from "react";
 import { loadStripe } from '@stripe/stripe-js';
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
-import "./signup.css"
+import "./signup.css";
 const SignUp = ({ successPayment }) => {
 
   // console.log(successPayment)
@@ -29,11 +28,11 @@ const SignUp = ({ successPayment }) => {
     event.preventDefault();
     let userDataToSend;
     if (user.password === user.confirmPassword) {
-      console.log(user);
+      // console.log(user);
       const storedUserData = localStorage.getItem('userData');
       if (storedUserData) {
         const userData = JSON.parse(storedUserData);
-        console.log(userData);
+        // console.log(userData);
         userDataToSend = userData;
       } else {
         console.log("No user data found in localStorage.");
@@ -57,7 +56,7 @@ const SignUp = ({ successPayment }) => {
         console.error("Error sending user information to server:", error.message);
       }
 
-     
+
     } else {
       alert("Password and confirm password don't match");
     }
@@ -79,7 +78,7 @@ const SignUp = ({ successPayment }) => {
 
   const makepayment = async (e) => {
     e.preventDefault();
-    console.log("make payment called")
+    // console.log("make payment called")
     const userDataToSend = { ...user, ...additionalInfo };
     localStorage.setItem('userData', JSON.stringify(userDataToSend));
 
@@ -88,7 +87,7 @@ const SignUp = ({ successPayment }) => {
     const body = {
       userdata: userDataToSend
     }
-    console.log(userDataToSend)
+    // console.log(userDataToSend)
     const headers = {
       "Content-Type": "application/json"
     }
@@ -104,7 +103,7 @@ const SignUp = ({ successPayment }) => {
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
-    console.log(result);
+    // console.log(result);
 
 
 
@@ -149,9 +148,9 @@ const SignUp = ({ successPayment }) => {
             <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
               Payment Successful , Watch netflix and chill
             </Alert>
-            <h3>Click Signup to Open Account</h3>
+            <h3 className="text-xl">Click Signup to Open Account</h3>
 
-            <button className="checkout" onClick={handleSignup}>Sign up</button>
+            <button className="checkout my-5 " onClick={handleSignup}>Sign up</button>
           </div>
         ) : (
           <>

@@ -6,7 +6,7 @@ import Category from '../components/Category/category';
 
 const CategoryPage = () => {
   const { title } = useParams(); 
-    console.log(title)
+    // console.log(title)
   return (
     <div>
       <Header />

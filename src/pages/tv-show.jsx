@@ -19,7 +19,7 @@ const TvShow = () => {
         const params = new URLSearchParams({ plan });
         const response = await fetch(`/api/maincontent/${title}?${params}`);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setSeriesData(data);
         setLoading(false)
       } catch (error) {

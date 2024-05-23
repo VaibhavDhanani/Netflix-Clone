@@ -13,7 +13,7 @@ const Movies=()=>{
       .then(data => setSubContent(data))
       .catch(error => console.error('Error fetching subcontent:', error));
   }, []);
-  console.log(subContent);
+  // console.log(subContent);
   const userPlan = JSON.parse(localStorage.getItem('user')).plan; 
   let plansToInclude;
   switch (userPlan) {
