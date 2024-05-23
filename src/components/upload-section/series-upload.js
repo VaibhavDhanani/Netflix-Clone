@@ -14,14 +14,17 @@ const SeasonUpload = (props) => {
 
   const addSeason = (e) => {
     e.preventDefault();
-    setSeasons([...seasons, { seasonNumber: seasons.length+1, episodes: [] }]);
+    setSeasons([
+      ...seasons,
+      { seasonNumber: seasons.length + 1, episodes: [] },
+    ]);
   };
 
   const addEpisode = (e, seasonIndex) => {
     e.preventDefault();
     const newSeasons = [...seasons];
     newSeasons[seasonIndex].episodes.push({
-      episodeNumber: newSeasons[seasonIndex].episodes.length+1,
+      episodeNumber: newSeasons[seasonIndex].episodes.length + 1,
       videoUrl: "",
       video: null,
       description: "",
@@ -111,10 +114,26 @@ const SeasonUpload = (props) => {
     });
   };
 
+  const areAllVideoUrlsPopulated = (seasons) => {
+    for (const season of seasons) {
+      for (const episode of season.episodes) {
+        if (!episode.videoUrl) {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
+  const allVideoUrlsPopulated = areAllVideoUrlsPopulated(seasons);
+
   return (
     <div className="space-y-6 text-white">
       {seasons.map((season, seasonIndex) => (
-        <div key={seasonIndex} className="dark:bg-gray-800 shadow-md rounded-lg p-6">
+        <div
+          key={seasonIndex}
+          className="dark:bg-gray-800 shadow-md rounded-lg p-6"
+        >
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">Season</h3>
             <input
@@ -132,13 +151,16 @@ const SeasonUpload = (props) => {
           </button>
           <div className="mt-4 space-y-4">
             {season.episodes.map((episode, episodeIndex) => (
-              <div key={episodeIndex} className="dark:bg-gray-600 p-4 rounded-lg">
+              <div
+                key={episodeIndex}
+                className="dark:bg-gray-600 p-4 rounded-lg"
+              >
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="text-sm font-semibold">Episode</h4>
                   <input
                     type="number"
                     className="text-black px-2 py-1 rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                    value={episode.episodeNumber }
+                    value={episode.episodeNumber}
                     onChange={(event) =>
                       handleEpisodeChange(
                         seasonIndex,
@@ -202,7 +224,12 @@ const SeasonUpload = (props) => {
       <button
         type="submit"
         onClick={handleSubmit}
-        className="w-full mt-5 py-2 px-4 bg-red-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 hover:bg-red-600"
+        className={`w-full mt-5 py-2 px-4 text-white rounded focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+          allVideoUrlsPopulated
+            ? "bg-red-500 hover:bg-red-600 focus:ring-red-500"
+            : "bg-red-800"
+        }`}
+        disabled={!allVideoUrlsPopulated}
       >
         Submit
       </button>
